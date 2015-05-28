@@ -5,7 +5,8 @@ var compress = require('compression');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var session = require('express-session');
-//var passport = require('passport');
+var passport = require('passport');
+var flash = require('connect-flash');
 
 //My Modules
 var config = require('./config.js');
@@ -40,8 +41,9 @@ module.exports = function() {
 	//Tells the view engine to look for EJS Templates
 	app.set('view engine', 'ejs');
 
-	//app.use(passport.initialize());
-	//app.use(passport.session());
+	app.use(flash());
+	app.use(passport.initialize());
+	app.use(passport.session());
 	
 	//Applies the routes to the app
 	require('../app/routes/index.s.route.js')(app);

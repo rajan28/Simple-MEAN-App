@@ -8,3 +8,4 @@ node_modules/mongoose
 node_modules/morgan
 node_modules/passport
 node_modules/passport-local
+node_modules/connect-flash
