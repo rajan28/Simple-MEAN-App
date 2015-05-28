@@ -48,16 +48,20 @@ UserSchema.virtual('fullName').get(function() {
 UserSchema.pre('save', function(next) {
 	if (this.password) {
 		this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
+		console.log(this.salt);
 		this.password = this.hashPassword(this.password);
+		console.log(this.password);
 	}
  	next();
 });
 
 UserSchema.methods.hashPassword = function(password) {
+	console.log(this.salt);
  	return crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');
 };
 
 UserSchema.methods.authenticate = function(password) {
+	console.log(this.password);
  	return this.password === this.hashPassword(password);
 };
 
