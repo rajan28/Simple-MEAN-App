@@ -3,8 +3,8 @@ var crypto = require('crypto');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema( {
-	firstName : String,
-	lastName : String,
+	firstname : String,
+	lastname : String,
 	email : {
 		type : String,
 		match : [/.+\@.+\..+/, "Please enter a valid e-mail address"]
@@ -42,7 +42,7 @@ var UserSchema = new Schema( {
 });
 
 UserSchema.virtual('fullName').get(function() {
- 	return this.firstName + ' ' + this.lastName;
+ 	return this.firstname + ' ' + this.lastname;
 });
 
 UserSchema.pre('save', function(next) {
