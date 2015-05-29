@@ -18,4 +18,6 @@ module.exports = function() {
 
 	var local = require('./strategies/local.js');
 	local();
+	var fb = require('./strategies/facebook.js');
+	fb();
 };
