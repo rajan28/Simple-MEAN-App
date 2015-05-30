@@ -17,7 +17,8 @@ module.exports = function(app) {
         }));
 
     app.get('/oauth/facebook', passport.authenticate('facebook', {
-        failureRedirect: '/login'
+        scope : ['public_profile', 'user_friends', 'email'],
+        failureRedirect : '/login'
     }));
 
     app.get('/oauth/facebook/callback', passport.authenticate('facebook', {

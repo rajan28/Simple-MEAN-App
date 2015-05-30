@@ -13,14 +13,16 @@
 		<h1><%= title %></h1>
 		<img src="img/yeoman.png" alt="Yeoman Logo">
 		
-		<% if ( userFullName ) { %>
+		<% if ( (provider != 'facebook') && userFullName ) { %>
 			<h2>Hello <%=userFullName%></h2>
+			<a href="/signout">Sign Out</a>
+		<% } else if ( provider == 'facebook' ) { %>
+			<h2>Hello <%=fbName%></h2>
 			<a href="/signout">Sign Out</a>
 		<% } else { %>
 			<a href="/register">Register</a>
 			<a href="/login">Login</a>
 		<% } %>
-
 
 	</body>
 

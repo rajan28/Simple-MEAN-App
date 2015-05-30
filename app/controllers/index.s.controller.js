@@ -7,6 +7,8 @@ exports.render = function(req, res) { //Renders information when called
 
 	res.render('index', {
 		title: 'Blah',
-		userFullName : req.user ? req.user.fullName : ''
+		userFullName : req.user ? req.user.fullName : '',
+		provider : req.user ? req.user.provider : '',
+		fbName : req.user ? ((req.user.provider == 'facebook') ? req.user.providerData.name : '') : ''
 	});
 };
