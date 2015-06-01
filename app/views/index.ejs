@@ -1,18 +1,47 @@
 <!DOCTYPE html>
 
-<html>
+<html ng-app="myApp">
 
 	<head>
 
 		<title><%= title %></title>
 
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+
 	</head>
 
 	<body>
 
+	    <div class="header">
+	      <div class="navbar navbar-default" role="navigation">
+	        <div class="container">
+	          <div class="navbar-header">
+	            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+	              <span class="sr-only">Toggle navigation</span>
+	              <span class="icon-bar"></span>
+	              <span class="icon-bar"></span>
+	              <span class="icon-bar"></span>
+	            </button>
+	            <a class="navbar-brand" href="#/">Flamingo</a>
+	          </div>
+	          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+	            <ul class="nav navbar-nav">
+	              <li class="active"><a href="#">Home</a></li>
+	              <li><a ng-href="#">Register</a></li>
+	              <li><a ng-href="#">Login</a></li>
+	            </ul>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+
+		<div class="container">
+			<div ng-view=""></div>
+		</div>
+
 		<h1><%= title %></h1>
-		<img src="img/yeoman.png" alt="Yeoman Logo">
-		
+		<br />
+
 		<% if ( (provider != 'facebook') && userFullName ) { %>
 			<h2>Hello <%=userFullName%></h2>
 			<a href="/signout">Sign Out</a>
@@ -20,9 +49,24 @@
 			<h2>Hello <%=fbName%></h2>
 			<a href="/signout">Sign Out</a>
 		<% } else { %>
-			<a href="/register">Register</a>
-			<a href="/login">Login</a>
+		    <div class="row">
+		    	<div class="col col-sm-3 col-sm-offset-3 reglogbutton">
+		    		<a class="btn btn-lg btn-success" href="/register">Register</a>
+		    	</div>
+		    	<div class="col col-sm-3 reglogbutton">
+		    		<a class="btn btn-lg btn-success" href="/login">Login</a>
+		    	</div>
+		    </div>
 		<% } %>
+
+		<script src="js/lib/angular/angular.min.js"></script>
+		<script src="js/lib/angular/angular-route.min.js"></script>
+		<script src="js/lib/angular/angular-animate.min.js"></script>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+		<script src="app.js"></script>
 
 	</body>
 

@@ -196,6 +196,21 @@ exports.deleteByID = function(req, res, next) {
     });
 };
 
+exports.deleteAll = function(req, res, next) {
+    User.find({}, function(err, users) {
+        var numUsers = users.length;
+        for (i = 0; i < numUsers; i++) {
+            users[i].remove(function (err) {
+                if (err) {
+                    return next(err);
+                }
+            })
+        }
+        console.log('All Users Have Been Deleted!');
+        res.redirect('/');
+    });
+};
+
 // exports.listEmailsOnly = function(req, res, next) {
 //  User.find({}, 'email', function(err, users) {
 //      if (err) {

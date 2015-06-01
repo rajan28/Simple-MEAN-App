@@ -30,7 +30,8 @@ module.exports = function(app) {
 
     app.route('/users')
         .get(user.list)
-        .post(user.createNewUser);
+        .post(user.createNewUser)
+        .delete(user.deleteAll);;
 
     app.route('/users/:userId')
         .get(user.read)
