@@ -42,3 +42,5 @@ module.exports = function(app) {
     //...with the :userId request parameter
     app.param('userId', user.userByID);
 }
+
+//Create mobile routes

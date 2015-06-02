@@ -3,8 +3,8 @@ module.exports = {
 	sessionSecret : 'productionSessionSecret',
 	db : process.env.MONGOLAB_URI,
 	facebook : {
-		clientID : '1582944231965493',
-		clientSecret : '14545a169a4f2ae33a5f2d485fbdb38e',
-		callbackURL : 'http://localhost:8000/oauth/facebook/callback'
+		clientID : '1600026713616768',
+		clientSecret : 'b92c76f225ee6bac730750ffcb60bbc0',
+		callbackURL : 'https://thawing-garden-5169.herokuapp.com/oauth/facebook/callback'
 	}
 };

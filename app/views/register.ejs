@@ -7,17 +7,30 @@
 		</title>
 	</head>
 	<body>
+
 		<% for(var i in messages) { %>
 			<div class="flash"><%= messages[i] %></div>
 		<% } %>
 		<form action="/register" method="post">
 			<div>
 				<label>First Name:</label>
-				<input type="text" name="firstName" />
+				<input type="text" name="firstname" />
 			</div>
 			<div>
 				<label>Last Name:</label>
-				<input type="text" name="lastName" />
+				<input type="text" name="lastname" />
+			</div>
+			<div>
+				<label>Gender:</label>
+				<select>
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+					<option value="Other">Other</option>
+				</select>
+			</div>
+			<div>
+				<label>Age:</label>
+				<input type="text" name="age" />
 			</div>
 			<div>
 				<label>Email:</label>

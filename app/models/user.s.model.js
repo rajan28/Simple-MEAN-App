@@ -3,11 +3,27 @@ var crypto = require('crypto');
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema( {
-	firstname : String,
-	lastname : String,
+	firstname : {
+		type : String,
+		//required : true
+	},
+	lastname : {
+		type : String,
+		//required : true
+	},
+	gender : {
+		type : String,
+		//required : true,
+		enum : ['Male', 'Female', 'Other']
+	},
+	age : {
+		type : Number,
+		//required : true
+	},
 	email : {
 		type : String,
-		match : [/.+\@.+\..+/, "Please enter a valid e-mail address"]
+		match : [/.+\@.+\..+/, "Please enter a valid e-mail address"],
+		required : true
 	},
 	username : {
 		type : String,
