@@ -7,7 +7,7 @@ exports.render = function(req, res) { //Renders information when called
 
 	res.render('index', {
 		title: 'Flamingo',
-		userFullName : JSON.stringify(req.user),
+		user : JSON.stringify(req.user),
 		provider : req.user ? req.user.provider : '',
 		fbName : req.user ? ((req.user.provider == 'facebook') ? req.user.providerData.name : '') : ''
 	});

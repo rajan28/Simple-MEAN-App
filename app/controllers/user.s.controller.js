@@ -90,7 +90,6 @@ exports.signout = function(req, res) {
 };
 
 exports.saveOAuthUserProfile = function(req, profile, done) {
-    //console.log(profile);
 
     User.findOne({
         provider: profile.provider,
@@ -100,21 +99,18 @@ exports.saveOAuthUserProfile = function(req, profile, done) {
             return done(err);
         } else {
             if (!user) {
-                var possibleUsername = profile.username || ((profile.email) ? profile.email.split('@')[0] : '') || 'johnnyboy';
+                var possibleUsername = profile.username || ((profile.email) ? profile.email.split('@')[0] : '');
 
                 User.findUniqueUsername(possibleUsername, null, function(availableUsername) {
                     profile.username = availableUsername;
 
                     user = new User(profile);
 
-                    //console.log(user);
-
                     user.save(function(err) {
                         if (err) {
                             var message = getErrorMessage(err);
 
                             req.flash('error', message);
-                            //return res.redirect('/register');
                         }
 
                         return done(err, user);
@@ -132,7 +128,7 @@ exports.saveOAuthUserProfile = function(req, profile, done) {
 exports.createNewUser = function(req, res, next) {
     var user = new User(req.body);
 
-    user.provider = 'posted';
+    //user.provider = 'posted';
 
     user.save(function(err) {
         if (err) {

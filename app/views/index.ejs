@@ -38,8 +38,8 @@
 		<h1><%= title %></h1>
 		<br />
 
-		<% if ( (provider != 'facebook') && userFullName ) { %>
-			<h2>Hello <%=userFullName%></h2>
+		<% if ( (provider != 'facebook') && user ) { %>
+			<h2>Hello <%=user%></h2>
 			<a href="/signout">Sign Out</a>
 		<% } else if ( provider == 'facebook' ) { %>
 			<h2>Hello <%=fbName%></h2>
@@ -57,6 +57,11 @@
 
 		<section ng-view></section>
 
+		<!--JavaScript Variables-->
+		<script type="text/javascript">
+			window.user = <%- user || 'null' %>;
+		</script>
+
 		<!-- Angular Files -->
 		<script src="js/lib/angular/angular.min.js"></script>
 		<script src="js/lib/angular/angular-route.min.js"></script>
@@ -70,6 +75,8 @@
 		<script src="test/test.c.module.js"></script>
 		<script src="test/config/test.c.routes.js"></script>
 		<script src="test/controllers/test.c.controller.js"></script>
+		<script src="users/users.c.module.js"></script>
+		<script src="users/services/auth.c.service.js"></script>
 		<script src="app.js"></script>
 
 	</body>

@@ -43,4 +43,4 @@ module.exports = function(app) {
     app.param('userId', user.userByID);
 }
 
-//Create mobile routes
+//Create mobile routes by using the provider
