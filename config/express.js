@@ -38,6 +38,7 @@ module.exports = function() {
 
 	//Specifies the location of the views
 	app.set('views', './app/views');
+	//app.set('views', './public/views');
 	//Tells the view engine to look for EJS Templates
 	app.set('view engine', 'ejs');
 

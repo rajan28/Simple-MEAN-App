@@ -44,3 +44,5 @@ module.exports = function(app) {
 }
 
 //Create mobile routes by using the provider
+
+//separate routes (frontend vs backend-only) by routing with /#! prefix...this should enable info to go to the correct spot?
