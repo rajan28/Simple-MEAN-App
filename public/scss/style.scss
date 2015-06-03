@@ -6,7 +6,8 @@
 @import url("http://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900|Droid+Sans:400,700");
 
 html {
-	@include background(image-url("bg-neutral.jpg"));
+	min-height: 100%;
+	@include background-image(linear-gradient(rgba(255,255,255,1), rgba(255,192,203,1)));
 }
 
 body {
@@ -34,4 +35,10 @@ h1 {
 .reglogbutton {
 	text-align : center;
 	
+}
+
+.navtitle {
+	background : rgba(255,192,203,1);
+	color : #222;
+	font-family : Bree Serif, serif;
 }

@@ -49,6 +49,7 @@ module.exports = function() {
 	//Applies the routes to the app
 	require('../app/routes/index.s.route.js')(app);
 	require('../app/routes/user.s.route.js')(app);
+	require('../app/routes/article.s.route.js')(app);
 
 	//Specifies the location of static files
 	//Serves the static files after rendering the dynamic content...
