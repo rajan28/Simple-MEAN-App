@@ -10,48 +10,52 @@
 	</head>
 	<body>
 
-		<div class="header">
-		  <div class="navbar navbar-default" role="navigation">
-		    <div class="container">
-		      <div class="navbar-header">
-		        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-		          <span class="sr-only">Toggle navigation</span>
-		          <span class="icon-bar"></span>
-		          <span class="icon-bar"></span>
-		          <span class="icon-bar"></span>
-		        </button>
-		        <a class="navbar-brand" href="/">Flamingo</a>
-		      </div>
-		      <div class="collapse navbar-collapse" id="js-navbar-collapse">
-		        <ul class="nav navbar-nav">
-		          <li class="active"><a href="/">Home</a></li>
-		          <li><a href="/register">Register</a></li>
-		          <li><a href="/login">Login</a></li>
-		        </ul>
-		      </div>
-		    </div>
-		  </div>
-		</div>
+        <div class="header">
+            <div class="navbar navbar-default navbar-static-top navbar-fixed-top" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/#!/">Flamingo</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="js-navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/#!/">Home</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><p class="navbar-btn"><a href="/register" class="btn btn-default navbutton">Register</a></p></li>
+                            <li><p class="navbar-btn"><a href="/login" class="btn btn-default navbutton">Login</a></p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-		<h1>Flamingo Login</h1>
-		<h3>Please Login Below!</h3>
+		<div class="jumbotron">
+			<h1>Flamingo Login</h1>
+		</div>
 
 		<% for(var i in messages) { %>
 			<div class="flash"><%= messages[i] %></div>
 		<% } %>
-		<form action="/login" method="post">
-			<div>
+		<form role="form" class="form" action="/login" method="post">
+			<div class="col col-sm-4 col-sm-offset-4">
 				<label>Username:</label>
-				<input type="text" name="username" />
+				<input type="text" class="form-control" name="username" />
 			</div>
-			<div>
+			<div class="col col-sm-4 col-sm-offset-4">
 				<label>Password:</label>
-				<input type="password" name="password" />
+				<input type="password" class="form-control" name="password" />
 			</div>
-			<div>
-				<input type="submit" value="Login" />
+			<div class="col col-sm-4 col-sm-offset-4">
+				<button type="submit" class="btn btn-lg btn-success gobutton">Go!</button>
 			</div>
 		</form>
+
 		<a href="/oauth/facebook">Sign in with Facebook</a>
 	</body>
 </html>

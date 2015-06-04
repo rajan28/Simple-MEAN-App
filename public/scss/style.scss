@@ -1,16 +1,26 @@
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-// @import "../bower_components/font-awesome/scss/font-awesome.scss";
+//@import "../bower_components/bootstrap-social/bootstrap-social.scss";
+//@import "../bower_components/font-awesome/scss/font-awesome.scss";
 @import "compass/reset";
 @import "compass/css3";
+
+$primary : rgba(255,192,203,1);
+$secondary : rgba(23,192,181,1);
+$tblack : rgba(34,34,34,1);
+$twhite : rgba(255,255,255,1);
+$a1 : rgba(110,79,85,1);
+$a2 : rgba(140,192,192,1);
+
 
 @import url("http://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900|Droid+Sans:400,700");
 
 html {
-	min-height: 100%;
+	min-height : 100%;
 	@include background-image(linear-gradient(rgba(255,255,255,1), rgba(255,192,203,1)));
 }
 
 body {
+	padding : 60px; 
 	background-color : rgba(0,0,0,0);
 }
 
@@ -32,13 +42,51 @@ h1 {
 	text-align : center;
 }
 
+h2 {
+	font-family : Bree Serif, serif;
+	font-size : 1.5rem;
+}
+
+h3 {
+	font-family : Bree Serif, serif;
+	font-size : 1.2rem;
+}
+
+label {
+	font-family : Droid Sans, sans-serif;
+	font-size : 1.2rem;
+	padding-bottom : 5px;
+}
+
 .reglogbutton {
-	text-align : center;
-	
+	display : inline-block;
+	width : 100%;
+}
+
+.gobutton {
+	min-width : 100%;
 }
 
 .navtitle {
 	background : rgba(255,192,203,1);
 	color : #222;
 	font-family : Bree Serif, serif;
+}
+
+.content {
+	background-color : rgba(34,34,34,0.2);
+}
+
+.navbutton {
+	margin : 0px 5px 0px 5px;
+}
+
+.standardform {
+	border-style : dotted;
+	@include border-radius(5px, 5px);
+}
+
+.formctrl {
+	border : 5px solid blue;
+	min-height: 200px;
 }

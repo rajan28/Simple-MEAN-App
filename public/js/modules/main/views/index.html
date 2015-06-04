@@ -1,6 +1,29 @@
 <section ng-controller="MainCtrl">
-	<input type="text" ng-model="name">
-	<input type="text" placeholder="notRajan">
 
-	<a class="btn btn-lg btn-success" href="/#!/results">Go!</a>
+	<p class="formerror" ng-show="message">{{message}}</p>
+	
+	<form role="form" class="form formctrl" name="goForm" action="" method="" ng-submit="" novalidate>
+		<div class="col col-sm-4 col-sm-offset-4">
+			<div class="form-group">
+				<label>Age:</label>
+				<input type="text" class="form-control" name="age" placeholder="Age" ng-model="info.age" ng-required="true">
+			</div>
+		</div>
+		<div class="col col-sm-4 col-sm-offset-4">
+			<div class="form-group">
+				<label>City:</label>
+				<input type="text" class="form-control" name="city" placeholder="Current City" ng-model="info.city" ng-required="true">
+			</div>
+		</div>
+		<div class="col col-sm-4 col-sm-offset-4">
+			<div class="form-group">
+				<label>Group Size:</label>
+				<input type="text" class="form-control" name="groupSize" placeholder="Group Size" ng-model="info.groupSize" ng-required="true">
+			</div>
+		</div>
+		<div class="col col-sm-4 col-sm-offset-4">
+			<button type="submit" class="btn btn-lg btn-success gobutton" ng-disabled="goForm.$invalid">Go!</button>
+		</div>
+	</form>
+
 </section>

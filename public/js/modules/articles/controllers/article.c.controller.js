@@ -1,0 +1,1 @@
+angular.module('article').controller('ArticleCtrl'), [$scope, $routeParams, $location, 'Auth', 'Article']
