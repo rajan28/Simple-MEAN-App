@@ -66,7 +66,7 @@ exports.signup = function(req, res, next) {
         var user = new User(req.body);
         var message = null;
 
-        user.provider = 'local';
+        user.provider = (!user.provider) ? 'local' : user.provider;
 
         user.save(function(err) {
             if (err) {

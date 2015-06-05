@@ -41,11 +41,8 @@
             <h1>Flamingo</h1>
         </div>
 
-        <% if ( (provider != 'facebook') && user ) { %>
+        <% if ( user ) { %>
             <h2>Hello <%=user%></h2>
-            <a href="/signout">Sign Out</a>
-        <% } else if ( provider == 'facebook' ) { %>
-            <h2>Hello <%=fbName%></h2>
             <a href="/signout">Sign Out</a>
         <% } else { %>
             <!-- <div class="col col-sm-4 col-sm-offset-4">

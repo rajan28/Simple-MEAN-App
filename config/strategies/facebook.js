@@ -63,14 +63,16 @@ module.exports = function() {
                 // providerData.refreshToken = refreshToken;
 
                 var providerUserProfile = {
-                    firstName: profile.name.givenName,
-                    lastName: profile.name.familyName,
-                    fullName: profile.displayName,
+                    firstname: profile.name.givenName,
+                    lastname: profile.name.familyName,
+                    fullname: profile.displayName,
+                    birthday: providerData.birthday,
+                    gender: providerData.gender.charAt(0).toUpperCase() + providerData.gender.slice(1),
                     email: profile.emails[0].value,
                     username: profile.username,
+                    password: 'password',
                     provider: 'facebook',
-                    providerId: profile.id,
-                    providerData: providerData
+                    providerId: profile.id
                 };
 
                 // // if there is no user found with that facebook id, create them

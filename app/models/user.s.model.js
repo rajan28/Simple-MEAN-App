@@ -16,8 +16,8 @@ var UserSchema = new Schema( {
 		//required : true,
 		enum : ['Male', 'Female', 'Other']
 	},
-	age : {
-		type : Number,
+	birthday : {
+		type : Date,
 		//required : true
 	},
 	email : {
@@ -57,7 +57,7 @@ var UserSchema = new Schema( {
 	}
 });
 
-UserSchema.virtual('fullName').get(function() {
+UserSchema.virtual('fullname').get(function() {
  	return this.firstname + ' ' + this.lastname;
 });
 
