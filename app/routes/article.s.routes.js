@@ -9,7 +9,7 @@ module.exports = function(app) {
 	app.route('/api/articles/:articleId')
 		.get(article.read)
 		.put(user.requiresLogin, article.hasAuthorization, article.update)
-		.delete(user.requiresLogin, article.hasAuthorization, article.delete)
+		.delete(user.requiresLogin, article.hasAuthorization, article.delete);
 
 	app.param('articleId', article.articleByID);
 };

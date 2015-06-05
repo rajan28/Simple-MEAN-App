@@ -55,7 +55,7 @@ exports.renderSignup = function(req, res, next) {
             title: 'Sign-up Form',
             messages: req.flash('error')
         });
-        res.set('ErrorMessage', req.flash('error'));
+        //res.set('ErrorMessage', req.flash('error'));
     } else {
         return res.redirect('/');
     }
@@ -91,7 +91,6 @@ exports.signout = function(req, res) {
 };
 
 exports.saveOAuthUserProfile = function(req, profile, done) {
-
     User.findOne({
         provider: profile.provider,
         providerId: profile.providerId

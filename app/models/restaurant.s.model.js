@@ -29,7 +29,7 @@ var RestaurantSchema = new Schema( {
 	},
 	price : {
 		type : Number
-	};
+	}
 	// hours : {
 	// 	type
 	// }

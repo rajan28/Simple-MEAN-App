@@ -47,9 +47,12 @@ module.exports = function() {
 	app.use(passport.session());
 	
 	//Applies the routes to the app
-	require('../app/routes/index.s.route.js')(app);
-	require('../app/routes/user.s.route.js')(app);
-	require('../app/routes/article.s.route.js')(app);
+	require('../app/routes/index.s.routes.js')(app);
+	require('../app/routes/user.s.routes.js')(app);
+	require('../app/routes/article.s.routes.js')(app);
+	// require('../app/routes/restaurant.s.routes.js')(app);
+	// require('../app/routes/bar.s.routes.js')(app);
+	// require('../app/routes/club.s.routes.js')(app);
 
 	//Specifies the location of static files
 	//Serves the static files after rendering the dynamic content...

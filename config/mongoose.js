@@ -7,6 +7,9 @@ module.exports = function() {
 	
 	require('../app/models/user.s.model.js');
 	require('../app/models/article.s.model.js');
+	require('../app/models/restaurant.s.model.js');
+	require('../app/models/bar.s.model.js');
+	require('../app/models/club.s.model.js');
 
 	return db;
 };

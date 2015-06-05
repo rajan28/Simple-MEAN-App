@@ -29,7 +29,7 @@ var ClubSchema = new Schema( {
 	},
 	price : {
 		type : Number
-	};
+	}
 	// hours : {
 	// 	type
 	// }

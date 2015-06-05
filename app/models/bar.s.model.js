@@ -29,7 +29,7 @@ var BarSchema = new Schema( {
 	},
 	price : {
 		type : Number
-	};
+	}
 	// hours : {
 	// 	type
 	// }
