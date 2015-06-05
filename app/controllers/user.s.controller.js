@@ -55,6 +55,7 @@ exports.renderSignup = function(req, res, next) {
             title: 'Sign-up Form',
             messages: req.flash('error')
         });
+        res.set('ErrorMessage', req.flash('error'));
     } else {
         return res.redirect('/');
     }

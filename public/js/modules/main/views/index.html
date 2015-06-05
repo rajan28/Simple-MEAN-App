@@ -1,7 +1,10 @@
 <section ng-controller="MainCtrl">
 
 	<p class="formerror" ng-show="message">{{message}}</p>
-	
+
+	<input type="text" ng-model="name">
+	<input type="text" ng-model="name">
+
 	<form role="form" class="form formctrl" name="goForm" action="" method="" ng-submit="" novalidate>
 		<div class="col col-sm-4 col-sm-offset-4">
 			<div class="form-group">
@@ -25,5 +28,10 @@
 			<button type="submit" class="btn btn-lg btn-success gobutton" ng-disabled="goForm.$invalid">Go!</button>
 		</div>
 	</form>
+
+	<ul>
+		<li><a href="/#!/articles">List Articles</a></li>
+		<li><a href="/#!/articles/create">Create Articles</a></li>
+	</ul>
 
 </section>

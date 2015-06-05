@@ -80,13 +80,3 @@ label {
 .navbutton {
 	margin : 0px 5px 0px 5px;
 }
-
-.standardform {
-	border-style : dotted;
-	@include border-radius(5px, 5px);
-}
-
-.formctrl {
-	border : 5px solid blue;
-	min-height: 200px;
-}
