@@ -1,0 +1,11 @@
+<section data-ng-controller="RestaurantCtrl" data-ng-init="find()">
+    <h1>Restaurants</h1>
+    <ul>
+        <li data-ng-repeat="restaurant in restaurants">
+            <a data-ng-href="#!/restaurants/{{restaurant._id}}" data-ng-bind="restaurant.name"></a>
+        </li>
+    </ul>
+    <div data-ng-hide="!restaurants || restaurants.length">
+        No restaurants yet, why don't you <a href="/#!/restaurants/create">add one</a>?
+    </div>
+</section>

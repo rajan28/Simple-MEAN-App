@@ -14,7 +14,7 @@ var getErrorMessage = function(err) {
 	}
 };
 
-exports.create = function(req, res) {
+exports.add = function(req, res) {
 	var bar = new Bar(req.body);
 
 	bar.save(function(err) {

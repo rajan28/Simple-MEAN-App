@@ -50,9 +50,9 @@ module.exports = function() {
 	require('../app/routes/index.s.routes.js')(app);
 	require('../app/routes/user.s.routes.js')(app);
 	require('../app/routes/article.s.routes.js')(app);
-	// require('../app/routes/restaurant.s.routes.js')(app);
-	// require('../app/routes/bar.s.routes.js')(app);
-	// require('../app/routes/club.s.routes.js')(app);
+	require('../app/routes/restaurant.s.routes.js')(app);
+	require('../app/routes/bar.s.routes.js')(app);
+	require('../app/routes/club.s.routes.js')(app);
 
 	//Specifies the location of static files
 	//Serves the static files after rendering the dynamic content...

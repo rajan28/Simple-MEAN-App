@@ -1,7 +1,7 @@
 var user = require('../../app/controllers/user.s.controller.js');
 var club = require('../../app/controllers/club.s.controller.js');
 
-// module.exports = function(app) {
+module.exports = function(app) {
 // 	app.route('/api/clubs')
 // 		.get(club.list)
 // 		.post(user.requiresLogin, club.add);
@@ -13,4 +13,4 @@ var club = require('../../app/controllers/club.s.controller.js');
 
 // 	app.param('clubId', club.clubByID);
 
-// };
+};

@@ -1,5 +1,6 @@
 <section data-ng-controller="ArticleCtrl" data-ng-init="findOne()">
     <h1 data-ng-bind="article.title"></h1>
+    <h1>This is not a drill.</h1>
     <div data-ng-show="authentication.user._id == article.creator._id">
         <a href="/#!/articles/{{article._id}}/edit">edit</a>
         <a href="#" data-ng-click="delete();">delete</a>

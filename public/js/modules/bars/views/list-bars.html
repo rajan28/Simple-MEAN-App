@@ -1,0 +1,11 @@
+<section data-ng-controller="BarCtrl" data-ng-init="find()">
+    <h1>Bars</h1>
+    <ul>
+        <li data-ng-repeat="bar in bars">
+            <a data-ng-href="#!/bars/{{bar._id}}" data-ng-bind="bar.name"></a>
+        </li>
+    </ul>
+    <div data-ng-hide="!bars || bars.length">
+        No bars yet, why don't you <a href="/#!/bars/create">add one</a>?
+    </div>
+</section>

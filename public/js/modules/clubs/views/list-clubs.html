@@ -1,0 +1,11 @@
+<section data-ng-controller="ClubCtrl" data-ng-init="find()">
+    <h1>Clubs</h1>
+    <ul>
+        <li data-ng-repeat="club in clubs">
+            <a data-ng-href="#!/clubs/{{club._id}}" data-ng-bind="club.name"></a>
+        </li>
+    </ul>
+    <div data-ng-hide="!clubs || clubs.length">
+        No clubs yet, why don't you <a href="/#!/clubs/create">add one</a>?
+    </div>
+</section>

@@ -9,7 +9,7 @@ angular.module('article').config(['$routeProvider', function($routeProvider) {
 	when('/articles/:articleId', {
 		templateUrl : 'js/modules/articles/views/view-article.html'
 	}).
-	when('/articles:articleId/edit', {
+	when('/articles/:articleId/edit', {
 		templateUrl : 'js/modules/articles/views/edit-article.html'
 	});
 }]);
