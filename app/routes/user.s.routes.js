@@ -38,9 +38,13 @@ module.exports = function(app) {
         .put(user.updateByID)
         .delete(user.deleteByID);
 
+    // app.route('/users/:username')
+    //     .get(user.read);
+
     //will be executed before any middleware registered...
     //...with the :userId request parameter
     app.param('userId', user.userByID);
+    // app.param('username', user.userByUsername);
 }
 
 //Create mobile routes by using the provider

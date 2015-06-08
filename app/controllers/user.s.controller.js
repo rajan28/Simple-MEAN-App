@@ -216,6 +216,22 @@ exports.deleteAll = function(req, res, next) {
     });
 };
 
+// exports.userByUsername = function(req, res, next, username) {
+//     console.log(username);
+//     User.findOne( {
+//         username : username
+//     }, function(err, user) {
+//         if (err) {
+//             return next(err);
+//         }
+//         else {
+//             console.log('break');
+//             req.user = user;
+//             next();
+//         }
+//     });
+// };
+
 // exports.listEmailsOnly = function(req, res, next) {
 //  User.find({}, 'email', function(err, users) {
 //      if (err) {
