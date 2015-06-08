@@ -45,6 +45,11 @@ module.exports = function() {
 	app.use(flash());
 	app.use(passport.initialize());
 	app.use(passport.session());
+
+	app.use(function(req, res, next) {
+    	res.setHeader("id", req.user ? req.user._id : '');
+    	return next();
+  	});
 	
 	//Applies the routes to the app
 	require('../app/routes/index.s.routes.js')(app);
