@@ -1,9 +1,9 @@
+// Import frameworks, fonts, etc.
 @import "../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-//@import "../bower_components/bootstrap-social/bootstrap-social.scss";
-//@import "../bower_components/font-awesome/scss/font-awesome.scss";
-@import "compass/reset";
 @import "compass/css3";
+@import url("http://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900|Droid+Sans:400,700");
 
+// Global SCSS Variables
 $primary : rgba(255,192,203,1);
 $secondary : rgba(23,192,181,1);
 $tblack : rgba(34,34,34,1);
@@ -11,72 +11,157 @@ $twhite : rgba(255,255,255,1);
 $a1 : rgba(110,79,85,1);
 $a2 : rgba(140,192,192,1);
 
+// Create Box Layout Model
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
-@import url("http://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900|Droid+Sans:400,700");
+// Style Resets
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline; 
+}
 
 html {
-	min-height : 100%;
-	@include background-image(linear-gradient(rgba(255,255,255,1), rgba(255,192,203,1)));
+    line-height: 1; 
+}
+
+ol, ul {
+    list-style: none; 
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0; 
+}
+
+caption, th, td {
+    text-align: left;
+    font-weight: normal;
+    vertical-align: middle;
+}
+
+q, blockquote {
+    quotes: none; 
+}
+
+q:before, q:after, blockquote:before, blockquote:after {
+    content: "";
+    content: none; 
+}
+
+a img {
+    border: none; 
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+    display: block;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+// My Styles
+html {
+    min-height : 100%;
+    @include background-image(linear-gradient(rgba(255,255,255,1), rgba(255,192,203,1)));
 }
 
 body {
-	padding : 60px; 
-	background-color : rgba(0,0,0,0);
+    padding : 60px; 
+    background-color : rgba(0,0,0,0);
 }
 
 header {
-	margin-bottom : 10px;
+    margin-bottom : 10px;
 }
 
-main {
-
-}
+// main {
+//     background: #FCF4DC;
+//     width: 80%;
+//     min-width: 310px;
+//     max-width: 700px;
+//     margin: 0 auto;
+//     padding: 10px 20px;
+//     text-align: center;
+//     border-radius: 10px;
+//     -webkit-box-shadow: 0px 0px 4px 0px black;
+//     box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+//     position: relative;
+//     opacity: .95;
+// }
 
 footer {
-	margin-top : 10px;
+    margin-top : 10px;
 }
 
 h1 {
-	font-family : Bree Serif, serif;
-	font-size : 2rem;
-	text-align : center;
+    font-family : Bree Serif, serif;
+    font-size : 2rem;
+    text-align : center;
 }
 
 h2 {
-	font-family : Bree Serif, serif;
-	font-size : 1.5rem;
+    font-family : Bree Serif, serif;
+    font-size : 1.5rem;
 }
 
 h3 {
-	font-family : Bree Serif, serif;
-	font-size : 1.2rem;
+    font-family : Bree Serif, serif;
+    font-size : 1.2rem;
 }
 
 label {
-	font-family : Droid Sans, sans-serif;
-	font-size : 1.2rem;
-	padding-bottom : 5px;
+    font-family : Droid Sans, sans-serif;
+    font-size : 1.2rem;
+    padding-bottom : 5px;
 }
 
 .reglogbutton {
-	display : inline-block;
-	width : 100%;
+    display : inline-block;
+    width : 100%;
 }
 
 .gobutton {
-	min-width : 100%;
+    min-width : 100%;
 }
 
 .navtitle {
-	background : rgba(255,192,203,1);
-	color : #222;
-	font-family : Bree Serif, serif;
+    background : rgba(255,192,203,1);
+    color : #222;
+    font-family : Bree Serif, serif;
 }
 
 .content {
-	background-color : rgba(34,34,34,0.2);
+    background-color : rgba(34,34,34,0.2);
 }
 
 .navbutton {
-	margin : 0px 5px 0px 5px;
+    margin : 0px 5px 0px 5px;
+}
+
+.test {
+    border : 5px solid red;
 }
