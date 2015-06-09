@@ -13,5 +13,5 @@ javascripts_dir = 'public/js'
 relative_assets = true
 line_comments = true #add scss/compass comments to css file
 cache_path ='public/scss/temp_cache'
-output_style = :expanded #switch to compressed for production
+output_style = :compressed #switch to compressed for production
 

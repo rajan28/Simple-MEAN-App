@@ -16,5 +16,5 @@ node_modules/passport-local
 node_modules/passport-facebook
 node_modules/connect-flash
 public/bower_components
-public/scss
 app/data
+public/scss
