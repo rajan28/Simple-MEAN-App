@@ -1,3 +1,6 @@
+app/data
+public/scss
+public/css
 zForLater
 main.devnotes.txt
 app/app.devnotes.txt
@@ -16,5 +19,3 @@ node_modules/passport-local
 node_modules/passport-facebook
 node_modules/connect-flash
 public/bower_components
-app/data
-public/scss
