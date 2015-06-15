@@ -1,5 +1,6 @@
 //3P Modules
 var express = require('express');
+var mongoose = require('mongoose');
 var morgan = require('morgan');
 var compress = require('compression');
 var bodyParser = require('body-parser');
@@ -7,6 +8,11 @@ var methodOverride = require('method-override');
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
+var socketio = require('socket.io');
+var MongoStore = require('connect-mongo')(session);
+
+//Node Core Modules
+var http = require('http');
 
 //My Modules
 var config = require('./config.js');
@@ -16,6 +22,10 @@ module.exports = function() {
 
 	//initializes an express app
 	var app = express();
+
+	//adds socketio functionality
+	var server = http.createServer(app);
+	var io = socketio.listen(server);
 
 	//applies middleware functions to the app
 	//executed in order
@@ -30,10 +40,16 @@ module.exports = function() {
 	}));
 	app.use(bodyParser.json());
 	app.use(methodOverride());
+
+	var mongoStore = new MongoStore( {
+		mongooseConnection : mongoose.connection
+	});
+
 	app.use(session( {
 		secret : config.sessionSecret,
 		saveUninitialized : true,
-		resave : true
+		resave : true,
+		store : mongoStore
 	})); //Adds a session object to all requests in app, to keep track of users' behavior
 
 	//Specifies the location of the views
@@ -64,5 +80,7 @@ module.exports = function() {
 	//...to avoid extra filesystem I/O calls
 	app.use(express.static('./public'));
 
-	return app;
+	require('./socketio')(server, io, mongoStore);
+
+	return server;
 };

@@ -3,6 +3,8 @@ public/scss/temp_cache
 node_modules/body-parser
 node_modules/compression
 node_modules/connect-flash
+node_modules/connect-mongo
+node_modules/cookie-parser
 node_modules/ejs
 node_modules/express-session
 node_modules/express
@@ -12,4 +14,5 @@ node_modules/morgan
 node_modules/passport-facebook
 node_modules/passport-local
 node_modules/passport
+node_modules/socket.io
 public/bower_components

@@ -62,6 +62,9 @@
             window.user = <%- user || 'null' %>;
         </script>
 
+        <!-- Socket.io -->
+        <script src="/socket.io/socket.io.js"></script>
+
         <!-- Angular Files -->
         <script src="js/lib/angular/angular.min.js"></script>
         <script src="js/lib/angular/angular-route.min.js"></script>
@@ -78,8 +81,10 @@
         <script src="js/modules/main/controllers/main.c.controller.js"></script>
     
         <script src="js/modules/users/user.c.module.js"></script>
+        <script src="js/modules/users/controllers/user.c.controller.js"></script>
         <script src="js/modules/users/services/authentication.c.service.js"></script>
-        
+        <script src="js/modules/users/routes/user.c.routes.js"></script>
+
         <script type="text/javascript" src="js/modules/articles/article.c.module.js"></script>
         <script type="text/javascript" src="js/modules/articles/controllers/article.c.controller.js"></script>
         <script type="text/javascript" src="js/modules/articles/services/article.c.service.js"></script>
@@ -98,7 +103,12 @@
         <script type="text/javascript" src="js/modules/clubs/club.c.module.js"></script>
         <script type="text/javascript" src="js/modules/clubs/controllers/club.c.controller.js"></script>
         <script type="text/javascript" src="js/modules/clubs/services/club.c.service.js"></script>
-        <script type="text/javascript" src="js/modules/clubs/routes/club.c.routes.js"></script>     
+        <script type="text/javascript" src="js/modules/clubs/routes/club.c.routes.js"></script>
+
+        <script type="text/javascript" src="js/modules/chat/chat.c.module.js"></script>
+        <script type="text/javascript" src="js/modules/chat/controllers/chat.c.controller.js"></script>
+        <script type="text/javascript" src="js/modules/chat/services/chat.c.service.js"></script>
+        <script type="text/javascript" src="js/modules/chat/routes/chat.c.routes.js"></script>
 
         <!-- Angular App -->
         <script src="app.js"></script>

@@ -1,4 +1,5 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+process.env.PORT = process.env.PORT || 8000;
 
 var mongoose = require('./config/mongoose.js');
 var express = require('./config/express.js');
@@ -12,12 +13,11 @@ var app = express();
 
 var passport = passport();
 
-app.set('port', (process.env.PORT || 8000));
-
 console.log('Server running');
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
+app.listen(process.env.PORT);
+console.log(process.env.PORT);
+// app.listen(app.get('port'), function() {
+//   console.log('Node app is running on port', app.get('port'));
+// });
 
 module.exports = app;

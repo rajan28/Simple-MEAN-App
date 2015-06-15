@@ -1,0 +1,62 @@
+/* BASE STYLES */
+
+// Root
+html {
+    min-height : 100%;
+    @include background-image(linear-gradient($white, $pink));
+}
+body {
+	min-height : 100%;
+}
+
+// Headers
+h1 {
+    font-family : $title;
+    font-size : $vlarge;
+}
+h2 {
+    font-family : $title;
+    font-size : $large;
+}
+h3 {
+    font-family : $standard;
+    font-size : $mediumPlus;
+}
+h4 {
+	font-family : $standard;
+	font-size : $medium;
+}
+h5 {
+	font-family : $standard;
+	font-size : $small;
+	font-weight : 300;
+}
+h6 {
+	font-family : $standard;
+	font-size : $vsmall;
+	font-weight : 300;
+}
+
+// Body Text
+p {
+	font-family : $standard;
+	font-size : $medium;
+}
+label{
+	font-family : $standard;
+	font-size : $mediumPlus;
+}
+// input {
+// 	font-family : $standard;
+// 	font-size : $vsmall;
+// }
+a {
+	font-family : $standard;
+	font-size : $medium;
+	color : $purple;
+
+}
+li {
+	font-family : $standard;
+	font-size : $medium;
+}
