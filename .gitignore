@@ -14,4 +14,3 @@ node_modules/passport-facebook
 node_modules/passport-local
 node_modules/passport
 node_modules/socket.io
-public/bower_components
