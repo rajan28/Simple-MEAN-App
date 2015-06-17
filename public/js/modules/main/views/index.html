@@ -1,44 +1,228 @@
 <section ng-controller="MainCtrl">
 
+    <!-- Banner -->
+        <section id="banner">
+            <h2>Flamingo</h2>
+            <p class="color-primary">No Plans Tonight? No Worries, We'll Make Them For You!</p>
+            <ul class="actions">
+                <li>
+                    <a href="/#!/#one" class="button big">Get Started!</a>
+                </li>
+            </ul>
+        </section>
+
+    <!-- One -->
+        <section id="one" class="wrapper style1 special">
+            <div class="container">
+                <header class="major">
+                    <h2>Kick Off Your Night</h2>
+                    <p>Fill in the form below.</p>
+                </header>
+
+                <div class="container 50%">
+                <form action="" method="" ng-submit="" novalidate>
+                    <div class="row uniform">
+                        <div class="6u 12u$(small)">
+                            <input type="text" name="group" id="group" ng-model="info.group" placeholder="Group Size">
+                        </div>
+                        <div class="6u$ 12u$">
+                        	<div class="select-wrapper">
+		                        <select id="category" name="location" ng-model="info.location">
+		                        	<option value>Choose a Location Type</option>
+		                        	<option value="restaurant">Restaurant</option>
+		                        	<option value="bar">Bar</option>
+		                        	<option value="club">Club</option>
+		                        </select>
+		                    </div>
+                        </div>
+                        <div class="6u 12u$(small)">
+                        	<input type="text" name="age" id="age" ng-model="info.age" placeholder="Age">
+                        </div>
+                        <div class="6u$ 12u$">
+                        	<div class="select-wrapper">
+	                            <select ng-model="info.price">
+	                            	<option value>Choose a Price Category</option>
+	                            	<option value="one">1</option>
+	                            	<option value="two">2</option>
+	                            	<option value="three">3</option>
+	                            </select>
+                       	    </div>
+                        </div>
+                    
+                        <div class="12u$">
+                            <ul class="actions">
+                                <li><input value="Go!" class="special big" type="submit"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--
+                <div class="row 150%">
+                    <div class="4u 12u$(medium)">
+                        <section class="box">
+                            <i class="icon big rounded color1 fa-cloud"></i>
+                            <h3>Lorem ipsum dolor</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim quam consectetur quibusdam magni minus aut modi aliquid.</p>
+                        </section>
+                    </div>
+                    <div class="4u 12u$(medium)">
+                        <section class="box">
+                            <i class="icon big rounded color9 fa-desktop"></i>
+                            <h3>Consectetur adipisicing</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium ullam consequatur repellat debitis maxime.</p>
+                        </section>
+                    </div>
+                    <div class="4u$ 12u$(medium)">
+                        <section class="box">
+                            <i class="icon big rounded color6 fa-rocket"></i>
+                            <h3>Adipisicing elit totam</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eaque eveniet, nesciunt molestias. Ipsam, voluptate vero.</p>
+                        </section>
+                    </div>
+                </div>
+            -->
+            </div>
+        </section>
+
+    <!-- Two -->
+        <section id="two" class="wrapper style2 special">
+            <div class="container">
+                <header class="major">
+                    <h2>Our Most Popular Cities</h2>
+                    <p></p>
+                </header>
+                <section class="profiles">
+                    <div class="row">
+                        <section class="3u 6u(medium) 12u$(xsmall) profile">
+                            <img src="images/basel.jpg" alt="Basel" />
+                            <h4>Basel</h4>
+                            <p>Active Users: 2392</p>
+                        </section>
+                        <section class="3u 6u$(medium) 12u$(xsmall) profile">
+                            <img src="images/profile_placeholder.gif" alt="" />
+                            <h4>Durham</h4>
+                            <p>Active Users: 1290</p>
+                        </section>
+                        <section class="3u 6u(medium) 12u$(xsmall) profile">
+                            <img src="images/profile_placeholder.gif" alt="" />
+                            <h4>San Francisco</h4>
+                            <p>Active Users: 4</p>
+                        </section>
+                        <section class="3u$ 6u$(medium) 12u$(xsmall) profile">
+                            <img src="images/profile_placeholder.gif" alt="" />
+                            <h4>Shanghai</h4>
+                            <p>Active Users: 1</p>
+                        </section>
+                    </div>
+                </section>
+                <footer>
+                    <h3>Don't see your city? Take a look at all the cities in which Flamingo operates!</h3>
+                    <ul class="actions">
+                        <li>
+                            <a href="#" class="button big">View City List</a>
+                        </li>
+                    </ul>
+                </footer>
+            </div>
+        </section>
+
+    <!-- Three -->
+        <section id="three" class="wrapper style3 special">
+            <div class="container">
+                <header class="major">
+                    <h2>Contact Us!</h2>
+                    <p>Leave us a message below! We look forward to speaking with you.</p>
+                </header>
+            </div>
+            <div class="container 50%">
+                <form action="#" method="post">
+                    <div class="row uniform">
+                        <div class="6u 12u$(small)">
+                            <input name="name" id="name" value="" placeholder="Name" type="text">
+                        </div>
+                        <div class="6u$ 12u$(small)">
+                            <input name="email" id="email" value="" placeholder="Email" type="email">
+                        </div>
+                        <div class="12u$">
+                            <textarea name="message" id="message" placeholder="Message" rows="6"></textarea>
+                        </div>
+                        <div class="12u$">
+                            <ul class="actions">
+                                <li><input value="Send Message" class="special big" type="submit"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    <!-- Footer -->
+        <footer id="footer">
+            <div class="container">
+                <section class="links">
+                    <div class="row">
+                        <section class="3u 6u(medium) 12u$(small)">
+                            <h3>Funded By</h3>
+                            <ul class="unstyled">
+                                <li><a href="#">Investor A</a></li>
+                                <li><a href="#">Bob Saget</a></li>
+                                <li><a href="#">Inestor C</a></li>
+                                <li><a href="#">Investor D</a></li>
+                            </ul>
+                        </section>
+                        <section class="3u 6u$(medium) 12u$(small)">
+                            <h3>Our Team</h3>
+                            <ul class="unstyled">
+                                <li><a href="#">Jared Schwartz, Mobile Dev</a></li>
+                                <li><a href="#">Rajan Patel</a></li>
+                                <li><a href="#">Bob Loblaw, Legal</a></li>
+                                <li><a href="#">Person D</a></li>
+                                <li><a href="#">Person E</a></li>
+                            </ul>
+                        </section>
+                        <section class="3u 6u(medium) 12u$(small)">
+                            <h3>Our Mission</h3>
+                            <p>We want to take over the world. Bow down, knaves.</p>
+                        </section>
+                        <section class="3u$ 6u$(medium) 12u$(small)">
+                            <h3>Navigation</h3>
+                            <ul class="unstyled">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Features</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="#">Register</a></li>
+                                <li><a href="#">Login</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </section>
+                <div class="row">
+                    <div class="8u 12u$(medium)">
+                        <ul class="copyright">
+                            <li>&copy; Flamingo, 2015. All rights reserved.</li>
+                        </ul>
+                    </div>
+                    <div class="4u$ 12u$(medium)">
+                        <ul class="icons">
+                            <li>
+                                <a class="icon rounded fa-facebook"><span class="label">Facebook</span></a>
+                            </li>
+                            <li>
+                                <a class="icon rounded fa-twitter"><span class="label">Twitter</span></a>
+                            </li>
+                            <li>
+                                <a class="icon rounded fa-google-plus"><span class="label">Google+</span></a>
+                            </li>
+                            <li>
+                                <a class="icon rounded fa-linkedin"><span class="label">LinkedIn</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
 	<p class="formerror" ng-show="message">{{message}}</p>
 
-	<h1>Test</h1>
-	<h2>Test</h2>
-	<h3>Test</h3>
-	<h4>Test</h4>
-	<h5>Test</h5>
-	<h6>Test</h6>
-
-	<form class="form" name="goForm" action="" method="" ng-submit="" novalidate>
-		<div class="col col-sm-4 col-sm-offset-4">
-			<div class="form-group">
-				<label>Age:</label>
-				<input type="text" class="form-control" name="age" placeholder="Age" ng-model="info.age" ng-required="true">
-			</div>
-		</div>
-		<div class="col col-sm-4 col-sm-offset-4">
-			<div class="form-group">
-				<label>City:</label>
-				<input type="text" class="form-control" name="city" placeholder="Current City" ng-model="info.city" ng-required="true">
-			</div>
-		</div>
-		<div class="col col-sm-4 col-sm-offset-4">
-			<div class="form-group">
-				<label>Group Size:</label>
-				<input type="text" class="form-control" name="groupSize" placeholder="Group Size" ng-model="info.groupSize" ng-required="true">
-			</div>
-		</div>
-		<div class="col col-sm-4 col-sm-offset-4">
-			<button type="submit" class="btn btn-lg btn-success gobutton" ng-disabled="goForm.$invalid">Go!</button>
-		</div>
-	</form>
-
-	<ul>
-		<li><a href="#!/chat">Chat</a></li>
-		<li><a href="/#!/articles">List Articles</a></li>
-		<li><a href="/#!/articles/create">Create Articles</a></li>
-	</ul>
-
-	<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
-	
 </section>

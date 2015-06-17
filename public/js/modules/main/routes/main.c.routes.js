@@ -5,5 +5,8 @@ angular.module('main').config(['$routeProvider', function($routeProvider) {
 	}).
 	when('/results', {
 		templateUrl : 'js/modules/main/views/results.html'
+	}).
+	when('/directions', {
+		templateUrl : 'js/modules/main/views/directions.html'
 	});
 }]);

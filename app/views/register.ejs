@@ -6,81 +6,159 @@
 			<%=title %>
 		</title>
 
-		<link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" href="css/skel.css">
+        <link rel="stylesheet" href="css/style.css">
 	</head>
 	
 	<body>
 
-        <div class="header">
-            <div class="navbar navbar-default navbar-static-top navbar-fixed-top" role="navigation">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="/#!/">Flamingo</a>
-                    </div>
-                    <div class="collapse navbar-collapse" id="js-navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li><a href="/#!/">Home</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><p class="navbar-btn"><a href="/register" class="btn btn-default navbutton">Register</a></p></li>
-                            <li><p class="navbar-btn"><a href="/login" class="btn btn-default navbutton">Login</a></p></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <header id="header">
+            <h1><a class="color-primary" href="/#!/">Flamingo</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="/#!/">Home</a></li>
+                    <li><a href="/#!/features">Features</a></li>
+                    <li><a href="/#!/contact">Contact</a></li>
+                    <li><a href="/register" class="button special">Register</a></li>
+                    <li><a href="/login" class="button special">Login</a></li>
+                </ul>
+            </nav>
+        </header>
 
-       	<div class="jumbotron">
-			<h1>Flamingo Signup</h1>
-		</div>
+        <br />
+
+        <section>
+        	<header class="major">
+        		<h2>Register</h2>
+        	</header>
+        </section>
 
 		<% for(var i in messages) { %>
 			<div class="flash"><%= messages[i] %></div>
 		<% } %>
-		<form role="form" class="form" action="/register" method="post">
-			<div class="col col-sm-4 col-sm-offset-4">
-				<label>First Name:</label>
-				<input class="form-control" type="text" name="firstname" />
+		<div class="container">
+			<div class="row">
+				<section class="6u 12u$(small)">
+					<h2>Why Register for a Flamingo Account?</h2>
+					<p>Registering for an account will enable you to share your preferences with us, helping us direct you to a spot that better matches your preferences</p>
+				</section>
+				<section class="6u 12u$(small)">
+					<form action="/register" method="post">
+						<div class="row uniform">
+							<div class="6u 12u$(small)">
+								<label>First Name:</label>
+								<input type="text" name="firstname" />
+							</div>
+							<div class="6u$ 12u$(small)">
+								<label>Last Name:</label>
+								<input type="text" name="lastname" />
+							</div>
+							<div class="6u 12u$(small)">
+								<div class="select-wrapper">
+									<label>Gender:</label>
+									<select>
+										<option value="Male">Male</option>
+										<option value="Female">Female</option>
+										<option value="Other">Other</option>
+									</select>
+								</div>
+							</div>
+							<div class="6u$ 12u$(small)">
+								<label>Age:</label>
+								<input type="text" name="age" />
+							</div>
+							<div class="12u$ 12u$(small)">
+								<label>Email:</label>
+								<input type="text" name="email" />
+							</div>
+							<div class="12u$ 12u$(small)">
+								<label>Username:</label>
+								<input type="text" name="username" />
+							</div>
+							<div class="12u$ 12u$(small)">
+								<label>Password:</label>
+								<input type="password" name="password" />
+							</div>			
+							<div class="12u$ 12u$(small)">
+								<input type="submit" value="Register" class="special big">
+							</div>
+						</div>
+					</form>
+				</section>
 			</div>
-			<div class="col col-sm-4 col-sm-offset-4">
-				<label>Last Name:</label>
-				<input class="form-control" type="text" name="lastname" />
-			</div>
-			<div class="col col-sm-4 col-sm-offset-4">
-				<label>Gender:</label>
-				<select class="form-control">
-					<option value="Male">Male</option>
-					<option value="Female">Female</option>
-					<option value="Other">Other</option>
-				</select>
-			</div>
-			<div class="col col-sm-4 col-sm-offset-4">
-				<label>Age:</label>
-				<input class="form-control" type="text" name="age" />
-			</div>
-			<div class="col col-sm-4 col-sm-offset-4">
-				<label>Email:</label>
-				<input class="form-control" type="text" name="email" />
-			</div>
-			<div class="col col-sm-4 col-sm-offset-4">
-				<label>Username:</label>
-				<input class="form-control" type="text" name="username" />
-			</div>
-			<div class="col col-sm-4 col-sm-offset-4">
-				<label>Password:</label>
-				<input class="form-control" type="password" name="password" />
-			</div>			
-			<div class="col col-sm-4 col-sm-offset-4">
-				<button type="submit" class="btn btn-lg btn-success gobutton">Go!</button>
-			</div>
-		</form>
+		</div>
 		<a class="" href="/oauth/facebook">Sign in with Facebook</a>
+
+    <!-- Footer -->
+        <footer id="footer">
+            <div class="container">
+                <section class="links">
+                    <div class="row">
+                        <section class="3u 6u(medium) 12u$(small)">
+                            <h3>Funded By</h3>
+                            <ul class="unstyled">
+                                <li><a href="#">Investor A</a></li>
+                                <li><a href="#">Bob Saget</a></li>
+                                <li><a href="#">Inestor C</a></li>
+                                <li><a href="#">Investor D</a></li>
+                            </ul>
+                        </section>
+                        <section class="3u 6u$(medium) 12u$(small)">
+                            <h3>Our Team</h3>
+                            <ul class="unstyled">
+                                <li><a href="#">Jared Schwartz, Mobile Dev</a></li>
+                                <li><a href="#">Rajan Patel</a></li>
+                                <li><a href="#">Bob Loblaw, Legal</a></li>
+                                <li><a href="#">Person D</a></li>
+                                <li><a href="#">Person E</a></li>
+                            </ul>
+                        </section>
+                        <section class="3u 6u(medium) 12u$(small)">
+                            <h3>Our Mission</h3>
+                            <p>We want to take over the world. Bow down, knaves.</p>
+                        </section>
+                        <section class="3u$ 6u$(medium) 12u$(small)">
+                            <h3>Navigation</h3>
+                            <ul class="unstyled">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Features</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="#">Register</a></li>
+                                <li><a href="#">Login</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </section>
+                <div class="row">
+                    <div class="8u 12u$(medium)">
+                        <ul class="copyright">
+                            <li>&copy; Flamingo, 2015. All rights reserved.</li>
+                        </ul>
+                    </div>
+                    <div class="4u$ 12u$(medium)">
+                        <ul class="icons">
+                            <li>
+                                <a class="icon rounded fa-facebook"><span class="label">Facebook</span></a>
+                            </li>
+                            <li>
+                                <a class="icon rounded fa-twitter"><span class="label">Twitter</span></a>
+                            </li>
+                            <li>
+                                <a class="icon rounded fa-google-plus"><span class="label">Google+</span></a>
+                            </li>
+                            <li>
+                                <a class="icon rounded fa-linkedin"><span class="label">LinkedIn</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+		<script src="js/jquery.min.js"></script>
+        <script src="js/skel.min.js"></script>
+        <script src="js/skel-layers.min.js"></script>
+        <script src="js/init.js"></script>
 
 	</body>
 </html>
