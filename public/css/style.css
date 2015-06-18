@@ -929,9 +929,9 @@
 		top: 0;
 	}
 
-		body.landing #header nav a {
+/*		body.landing #header nav a {
 			color: rgba(255, 255, 255, 0.5);
-		}
+		}*/
 
 	#header {
 		background-color: #383b43;
@@ -1233,6 +1233,15 @@
 	color : #fff;
 }
 
+.chicken {
+	background-color: #383b43;
+	max-height: 6em;
+}
+
+.lettuce {
+	margin-top: 6em;
+}
+
 /* Google Maps */
 
 #map-canvas {
@@ -1282,4 +1291,11 @@
 	  float: none;
 	  width: auto;
 	}
+}
+
+.flash {
+	font-weight: 700;
+	font-size: 1.5em;
+	text-align: center;
+	color: red;
 }

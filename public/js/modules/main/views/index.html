@@ -1,9 +1,28 @@
 <section ng-controller="MainCtrl">
 
+    <!-- Header -->
+    <!--
+        <header id="header">
+            <h1><a class="color-primary" href="/#!/">Flamingo</a></h1>
+            <nav id="nav">
+                <ul>
+                    <li><a href="/#!/">Home</a></li>
+                    <li><a href="/#!/features">Features</a></li>
+                    <li><a href="/#!/contact">Contact</a></li>
+                    <li><a href="/register" class="button special" ng-hide="logstatus">Register</a></li>
+                    <li><a href="/login" class="button special" ng-hide="logstatus">Login</a></li>
+                    <li><a href="/profile" class="button special" ng-show="logstatus">Profile</a></li>
+                    <li><a href="/signout" class="button special" ng-show="logstatus">Signout</a></li>
+                </ul>
+            </nav>
+        </header>
+    -->
+
     <!-- Banner -->
         <section id="banner">
             <h2>Flamingo</h2>
-            <p class="color-primary">No Plans Tonight? No Worries, We'll Make Them For You!</p>
+            <p class="color-primary" ng-hide="logstatus">No Plans Tonight? No Worries, We'll Make Them For You!</p>
+            <p class="color-primary" ng-show="logstatus">Welcome Back, {{name}}.</p>
             <ul class="actions">
                 <li>
                     <a href="/#!/#one" class="button big">Get Started!</a>
@@ -20,43 +39,50 @@
                 </header>
 
                 <div class="container 50%">
-                <form action="" method="" ng-submit="" novalidate>
-                    <div class="row uniform">
-                        <div class="6u 12u$(small)">
-                            <input type="text" name="group" id="group" ng-model="info.group" placeholder="Group Size">
+                    <form ng-submit="queryHandler()" novalidate>
+                        <div class="row uniform">
+                            <div class="12u$ 12u$(small)">
+                                <div class="select-wrapper">
+                                    <select ng-model="location">
+                                        <option value="Basel">Basel</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="6u 12u$(small)">
+                                <input type="text" name="group" id="group" ng-model="group" placeholder="Group Size">
+                            </div>
+                            <div class="6u$ 12u$(small)">
+                            	<div class="select-wrapper">
+    		                        <select ng-model="type">
+                                        <option value>Choose a Location Type</option>
+    		                        	<option value="Restaurant">Restaurant</option>
+    		                        	<option value="Bar">Bar</option>
+    		                        	<option value="Club">Club</option>
+    		                        </select>
+    		                    </div>
+                            </div>
+                            <div class="6u 12u$(small)">
+                            	<input type="text" name="age" id="age" ng-model="age" placeholder="Age">
+                            </div>
+                            <div class="6u$ 12u$(small)">
+                            	<div class="select-wrapper">
+    	                            <select ng-model="price">
+    	                            	<option value>Choose a Price Category</option>
+    	                            	<option value="1">1</option>
+    	                            	<option value="2">2</option>
+    	                            	<option value="3">3</option>
+    	                            </select>
+                           	    </div>
+                            </div>
+                        
+                            <div class="12u$">
+                                <ul class="actions">
+                                    <li><input value="Go!" class="special big" type="submit"></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="6u$ 12u$">
-                        	<div class="select-wrapper">
-		                        <select id="category" name="location" ng-model="info.location">
-		                        	<option value>Choose a Location Type</option>
-		                        	<option value="restaurant">Restaurant</option>
-		                        	<option value="bar">Bar</option>
-		                        	<option value="club">Club</option>
-		                        </select>
-		                    </div>
-                        </div>
-                        <div class="6u 12u$(small)">
-                        	<input type="text" name="age" id="age" ng-model="info.age" placeholder="Age">
-                        </div>
-                        <div class="6u$ 12u$">
-                        	<div class="select-wrapper">
-	                            <select ng-model="info.price">
-	                            	<option value>Choose a Price Category</option>
-	                            	<option value="one">1</option>
-	                            	<option value="two">2</option>
-	                            	<option value="three">3</option>
-	                            </select>
-                       	    </div>
-                        </div>
-                    
-                        <div class="12u$">
-                            <ul class="actions">
-                                <li><input value="Go!" class="special big" type="submit"></li>
-                            </ul>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </div>
             <!--
                 <div class="row 150%">
                     <div class="4u 12u$(medium)">

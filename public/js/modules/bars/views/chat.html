@@ -1,0 +1,12 @@
+<section ng-controller="BarCtrl" data-ng-init="createInfo()">
+
+	<form ng-submit="main()" novalidate>
+		<input type="text" name="message" ng-model="message" placeholder="Write Your Message Here">
+		<input type="submit" value="submit">
+	</form>
+
+	<div class="chat" ng-repeat="(key, chat) in chats">
+		<p>{{chat.text}}</p>
+	</div>
+
+</section>

@@ -52,6 +52,8 @@
         <!--JavaScript Variables-->
         <script type="text/javascript">
             window.user = <%- user || 'null' %>;
+            var date = new Date();
+            window.local = date.getTime();
         </script>
 
         <!--Style Scripts -->
@@ -103,10 +105,6 @@
         <script type="text/javascript" src="js/modules/chat/controllers/chat.c.controller.js"></script>
         <script type="text/javascript" src="js/modules/chat/services/chat.c.service.js"></script>
         <script type="text/javascript" src="js/modules/chat/routes/chat.c.routes.js"></script>
-
-        <script type="text/javascript" src="js/modules/firechat/firechat.c.module.js"></script>
-        <script type="text/javascript" src="js/modules/firechat/controllers/firechat.c.controller.js"></script>
-        <script type="text/javascript" src="js/modules/firechat/routes/firechat.c.routes.js"></script>
 
         <!-- Google Maps -->
         <script src="bower_components/lodash/lodash.min.js"></script>

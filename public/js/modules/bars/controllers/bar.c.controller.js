@@ -1,5 +1,70 @@
-angular.module('bar').controller('BarCtrl', ['$scope', '$routeParams', '$location', 'Authentication', 'Bar', function($scope, $routeParams, $location, Authentication, Bar) {
+angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$firebaseObject', '$firebaseArray', 'FIREBASE_URL', 'Authentication', 'Bar', function($scope, $rootScope, $routeParams, $location, $firebaseObject, $firebaseArray, FIREBASE_URL, Authentication, Bar) {
 	$scope.authentication = Authentication;
+
+	//Chat Functions
+	$scope.chatroom = '/#!' + $location.path() + '/chat';
+
+	$scope.bar = {};
+	var chatRef = '';
+	$scope.group = 0;
+	$scope.groupSize = '';
+	$scope.sender = '';
+
+	$scope.createInfo = function() {
+		$scope.bar = Bar.get( {
+			barId : $routeParams.barId
+		}).$promise.then(function(data) {
+			chatRef = new Firebase(FIREBASE_URL + 'chatrooms/' + data.name);
+			$scope.bar = data;
+			var groupRef = new Firebase(FIREBASE_URL + 'chatrooms/' + data.name + '/groups');
+			var mainRef = new Firebase(FIREBASE_URL + 'chatrooms/' + data.name + '/main');
+			var chatObj = $firebaseObject(mainRef);
+			chatObj.$loaded().then(function(obj) {
+				$scope.chats = obj;
+			});
+
+			groupRef.once('value', function(dataSnapshot) {
+				$scope.group = dataSnapshot.numChildren() + 1;
+				window.sender = window.user ? window.user.username : window.local;
+				$scope.groupSize = window.queryObject ? window.queryObject.groupSize : '';
+				var groupArray = $firebaseArray(groupRef);
+				groupArray.$loaded().then(function(data) {
+					for (i=0; i < data.length; i++) {
+						if (window.sender == data[i].sender) {
+							$scope.group = data[i].group;
+							$scope.groupSize = data[i].groupSize;
+							$scope.sender = data[i].sender;
+							break;
+						}; 
+						if (i == data.length-1) {
+							groupRef.push( {
+								group : $scope.group,
+								groupSize : $scope.groupSize,
+								sender : window.sender
+							});
+							$scope.sender = window.sender
+						};
+					};
+				});			
+			});
+		});
+	};
+
+	$scope.notSignedIn = function() {
+
+	};
+
+	$scope.main = function() {
+		var mainRef = new Firebase(FIREBASE_URL + 'chatrooms/' + $scope.bar.name + '/main');
+		mainRef.push( {
+			group : $scope.group,
+			groupSize : $scope.groupSize,
+			sender : $scope.sender,
+			text : $scope.message
+		});
+	};
+
+	//Bar Functions
 
 	$scope.create = function() {
 		var bar = new Bar( {

@@ -5,23 +5,47 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema( {
 	firstname : {
 		type : String,
-		//required : true
+    	required : true
 	},
 	lastname : {
 		type : String,
-		//required : true
+		required : true
 	},
 	gender : {
 		type : String,
-		//required : true,
+		required : true,
 		enum : ['Male', 'Female', 'Other']
 	},
 	birthday : {
-		type : Date,
-		//required : true
+		type : String,
+		required : true,
+		validate : [
+			function isValidDate(birthday) {
+			    if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(birthday)) {
+			        return false;
+			    }
+
+			    var parts = birthday.split("/");
+			    var day = parseInt(parts[1], 10);
+			    var month = parseInt(parts[0], 10);
+			    var year = parseInt(parts[2], 10);
+			    var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+			    if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
+			        monthLength[1] = 29;
+			    };
+
+			    if(year < 1900 || year > 2100 || month == 0 || month > 12 || day == 0 || day >= monthLength[month - 1]) {
+			        return false;
+			    };
+
+			    return true;
+			},
+			"Month must be in the following format: MM/DD/YYYY"
+		]
 	},
 	email : {
 		type : String,
+    unique : true,
 		match : [/.+\@.+\..+/, "Please enter a valid e-mail address"],
 		required : true
 	},
@@ -38,6 +62,9 @@ var UserSchema = new Schema( {
 		    return password && password.length > 7;
 		}, 'Password should be longer'
 		]
+	},
+	preferences : {
+		type : Array
 	},
 	salt : {
 		type : String
@@ -59,6 +86,17 @@ var UserSchema = new Schema( {
 
 UserSchema.virtual('fullname').get(function() {
  	return this.firstname + ' ' + this.lastname;
+});
+
+UserSchema.virtual('age').get(function() {
+    var today = new Date();
+    var birthDate = new Date(this.birthday);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age = age - 1;
+    };
+    return age;
 });
 
 UserSchema.pre('save', function(next) {
@@ -102,94 +140,3 @@ UserSchema.set('toJSON', {
 });
 
 mongoose.model('User', UserSchema);
-
-
-// var mongoose = require('mongoose');
-
-// var Schema = mongoose.Schema;
-
-// var lowerCase = function toLower(input) {
-// 	return input.toLowerCase();
-// };
-
-// var UserSchema = new Schema( {
-// 	firstname : {
-// 		type : String,
-// 		//required : true
-// 	},
-// 	lastname : {
-// 		type : String,
-// 		//required : true
-// 	},
-// 	role : {
-// 		type : String,
-// 		enum : ['Overlord', 'Peon']
-// 	},
-// 	email : {
-// 		type : String,
-// 		//required : true,
-// 		set : lowerCase, //calls toLower function, where user email is the input parameter
-// 		unique : true,
-// 		match : /.+\..+/
-// 	},
-// 	username : {
-// 		type : String,
-// 		//required : true,
-// 		trim : true,
-// 		unique : true
-// 	},
-// 	password : {
-// 		type : String,
-// 		//required : true,
-// 		validate : [
-// 			function(password) {
-// 				return password.length >= 8;
-// 			},
-// 			'Your password must be at least 8 characters'
-// 		]
-// 	},
-// 	createdAt : {
-// 		type : Date,
-// 		default : Date.now
-// 	}
-// });
-
-// //Creates a static method (need to learn more about this)
-// UserSchema.statics.findOneByUsername = function(username, callback) {
-// 	this.findOne({username : new RegExp(username, 'i') }, callback);
-// }
-
-// //Defines a custom instance method (learn more)
-// UserSchema.methods.auth = function(password) {
-// 	return this.password === password;
-// }
-
-// //creates a virtual fullname attribute
-// UserSchema.virtual('fullname').get(function() {
-// 	return this.firstname + ' ' + this.lastname;
-// });
-
-// //Virtuals to true creates a stringified version of _id, and creates virtual attributes which are not persisted to MongoDB
-// UserSchema.set('toJSON', {
-// 	getters : true,
-// 	virtuals : true
-// });
-
-// var ReviewSchema = new Schema ( {
-// 	title : {
-// 		type : String,
-// 		required : true
-// 	},
-// 	content : {
-// 		type : String,
-// 		required : true
-// 	},
-// 	author : {
-// 		type : Schema.ObjectId,
-// 		ref : 'User' //learn more about this
-// 	}
-// });
-
-
-// mongoose.model('User', UserSchema);
-// mongoose.model('Post', ReviewSchema);

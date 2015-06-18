@@ -1,6 +1,6 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngResource', 'uiGmapgoogle-maps', 'firebase', 'main', 'user', 'article', 'bar', 'restaurant', 'club', 'chat', 'firechat']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngResource', 'uiGmapgoogle-maps', 'firebase', 'main', 'user', 'article', 'bar', 'restaurant', 'club', 'chat']);
 
-myApp.constant('FIREBASE_URL', 'https://startup-stuff.firebaseio.com/')
+myApp.constant('FIREBASE_URL', 'https://startup-stuff.firebaseio.com/');
 
 myApp.config(['$locationProvider', function($locationProvider) {
     $locationProvider.hashPrefix('!');

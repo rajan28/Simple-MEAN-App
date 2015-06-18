@@ -30,19 +30,25 @@
         <section>
         	<header class="major">
         		<h2>Register</h2>
-        	</header>
-        </section>
+                <% for(var i in messages) { %>
 
-		<% for(var i in messages) { %>
-			<div class="flash"><%= messages[i] %></div>
-		<% } %>
+                    <div class="flash">
+                        Registration Error:
+                        <%= messages[i] %>
+                    </div>
+                <% } %>
+        	</header>
+        </section>   
+
 		<div class="container">
 			<div class="row">
 				<section class="6u 12u$(small)">
 					<h2>Why Register for a Flamingo Account?</h2>
 					<p>Registering for an account will enable you to share your preferences with us, helping us direct you to a spot that better matches your preferences</p>
+                    <h2>Register with Facebook</h2>
+                    <a class="" href="/oauth/facebook">Register with Facebook</a>
 				</section>
-				<section class="6u 12u$(small)">
+				<section class="6u 12u$(small)">               
 					<form action="/register" method="post">
 						<div class="row uniform">
 							<div class="6u 12u$(small)">
@@ -56,7 +62,7 @@
 							<div class="6u 12u$(small)">
 								<div class="select-wrapper">
 									<label>Gender:</label>
-									<select>
+									<select name="gender">
 										<option value="Male">Male</option>
 										<option value="Female">Female</option>
 										<option value="Other">Other</option>
@@ -64,8 +70,8 @@
 								</div>
 							</div>
 							<div class="6u$ 12u$(small)">
-								<label>Age:</label>
-								<input type="text" name="age" />
+								<label>Birthday (MM/DD/YYYY):</label>
+								<input type="text" name="birthday" />
 							</div>
 							<div class="12u$ 12u$(small)">
 								<label>Email:</label>
@@ -87,7 +93,6 @@
 				</section>
 			</div>
 		</div>
-		<a class="" href="/oauth/facebook">Sign in with Facebook</a>
 
     <!-- Footer -->
         <footer id="footer">
