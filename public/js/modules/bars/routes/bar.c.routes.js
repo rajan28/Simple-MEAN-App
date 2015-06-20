@@ -14,5 +14,8 @@ angular.module('bar').config(['$routeProvider', function($routeProvider) {
 	}).
 	when('/bars/:barId/chat', {
 		templateUrl : 'js/modules/bars/views/chat.html'
+	}).
+	when('/bars/:barId/reviews', {
+		templateUrl : 'js/modules/bars/views/rate-review-bar.html'
 	});
 }]);

@@ -1233,20 +1233,46 @@
 	color : #fff;
 }
 
-.chicken {
+.navbackground {
 	background-color: #383b43;
 	max-height: 6em;
 }
 
-.lettuce {
+.first {
 	margin-top: 6em;
 }
 
-/* Google Maps */
+/* RATING SYSTEM */
+
+.rating {
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+}
+
+	.rating li {
+		padding: 1px;
+		color: #ddd;
+		font-size: 20px;
+		text-shadow: .05em .05em #aaa;
+		list-style-type: none;
+		display: inline-block;
+		cursor: pointer;
+	}
+
+		.rating li.filled {
+			color: #fd0;
+		}
+
+		.rating.readonly li.filled {
+			color: #666;
+		}
+
+/* GOOGLE MAPS */
 
 #map-canvas {
-	height : 400px;
-	width : 700px;
+	height : 300px;
+	width : 100%;
 }
 
 #panel {

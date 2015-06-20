@@ -1,0 +1,35 @@
+<section class="navbackground" data-ng-controller="BarCtrl" data-ng-init="findOne()">
+    <br>
+    <h1 class="first">Rate Your Experience!</h1>
+    <form data-ng-submit="createReview()" novalidate>
+        <div>
+            <label for="title">Title</label>
+            <div>
+                <input type="text" data-ng-model="title" id="title" placeholder="Title" required>
+            </div>
+        </div>
+        <div>
+            <label for="content">Content</label>
+            <div>
+                <textarea data-ng-model="content" id="content" cols="30" rows="10" placeholder="Content"></textarea>
+            </div>
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+        <div data-ng-show="error">
+            <strong data-ng-bind="error"></strong>
+        </div>
+    </form>
+
+    <h1>Angular Star Rating Directive</h1>
+    <div star-rating ng-model="rating1" max="10" on-rating-selected="rateFunction(rating)"></div>
+    <star-rating ng-model="rating2" readonly="isReadonly"></star-rating>
+    <label>
+    <input type="checkbox" ng-model="isReadonly"/>
+    Is Readonly
+    </label>
+
+    <div><strong>Rating 1:</strong> {{rating1}}</div>
+    <div><strong>Rating 2:</strong> {{rating2}}</div>
+</section>

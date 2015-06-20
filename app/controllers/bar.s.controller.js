@@ -1,5 +1,9 @@
 var mongoose = require('mongoose');
 var Bar = mongoose.model('Bar');
+var BarReviews = mongoose.model('BarReviews');
+var BarRatings = mongoose.model('BarRatings');
+
+//Error Handling Function
 
 var getErrorMessage = function(err) { 
 	if (err.errors) { 
@@ -13,6 +17,8 @@ var getErrorMessage = function(err) {
 		return 'Unknown server error'; 
 	}
 };
+
+//Add Functions
 
 exports.add = function(req, res) {
 	var bar = new Bar(req.body);
@@ -29,6 +35,38 @@ exports.add = function(req, res) {
 	});
 };
 
+exports.addReviews = function(req, res) {
+	var barReviews = new BarReviews(req.body);
+
+	barReviews.save(function(err) {
+		if (err) {
+			return res.status(400).send( {
+				message : getErrorMessage(err)
+			});
+		}
+		else {
+			res.json(barReviews);
+		}
+	});
+};
+
+exports.addRatings = function(req, res) {
+	var barRatings = new BarRatings(req.body);
+
+	barRatings.save(function(err) {
+		if (err) {
+			return res.status(400).send( {
+				message : getErrorMessage(err)
+			});
+		}
+		else {
+			res.json(barRatings);
+		}
+	});
+};
+
+//List Functions
+
 exports.list = function(req, res) {
     Bar.find({}, function(err, bars) {
         if (err) {
@@ -38,6 +76,28 @@ exports.list = function(req, res) {
             res.json(bars);
         }
     });
+};
+
+exports.listReviews = function(req, res) {
+	BarReviews.find({}, function(err, reviews) {
+		if (err) {
+			return next(err);
+		}
+		else {
+			res.json(reviews);
+		}
+	});
+};
+
+exports.listRatings = function(req, res) {
+	BarRatings.find({}, function(err, ratings) {
+		if (err) {
+			return next(err);
+		}
+		else {
+			res.json(ratings);
+		}
+	});
 };
 
 exports.barByID = function(req, res, next, id) {

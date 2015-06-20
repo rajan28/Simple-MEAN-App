@@ -1,10 +1,33 @@
-angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$firebaseObject', '$firebaseArray', 'FIREBASE_URL', 'Authentication', 'Bar', function($scope, $rootScope, $routeParams, $location, $firebaseObject, $firebaseArray, FIREBASE_URL, Authentication, Bar) {
+angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$firebaseObject', '$firebaseArray', 'FIREBASE_URL', 'Authentication', 'Bar', 'BarReview', 'BarRating', function($scope, $rootScope, $routeParams, $location, $firebaseObject, $firebaseArray, FIREBASE_URL, Authentication, Bar, BarReview, BarRating) {
 	$scope.authentication = Authentication;
+
+	//Review Functions
+	$scope.reviewsPage = '/#!' + $location.path() + '/reviews';
+	//$scope.postReview = '/api/bars/' + '/reviews';
+
+	$scope.rating1 = 5;
+	$scope.rating2 = 2;
+	$scope.isReadonly = true;
+	$scope.rateFunction = function(rating) {
+	console.log("Rating selected: " + rating);
+	};
+
+	$scope.createReview = function() {
+		var review = new BarReview( {
+			title : this.title,
+			content : this.content
+		});
+		review.$save(function(res) {
+			// $location.path('bars/' + res._id);
+		}, function(errorResponse) {
+			$scope.error = errorResponse.data.message;
+		});
+	};
 
 	//Chat Functions
 	$scope.chatroom = '/#!' + $location.path() + '/chat';
 
-	$scope.bar = {};
+	//$scope.bar = {};
 	var chatRef = '';
 	$scope.group = 0;
 	$scope.groupSize = '';

@@ -11,6 +11,14 @@ module.exports = function(app) {
 		.put(user.requiresLogin, bar.hasAuthorization, bar.update)
 		.delete(user.requiresLogin, bar.hasAuthorization, bar.delete);
 
+	app.route('/api/bars/:barId/reviews')
+		.get(bar.listReviews)
+		.post(user.requiresLogin, bar.addReviews);
+
+	app.route('/api/bars/:barId/ratings')
+		.get(bar.listRatings)
+		.post(user.requiresLogin, bar.addRatings);
+
 	app.param('barId', bar.barByID);
 
 };

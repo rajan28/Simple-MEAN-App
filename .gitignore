@@ -1,4 +1,5 @@
 app/data
+public/scss
 node_modules/body-parser
 node_modules/compression
 node_modules/connect-flash

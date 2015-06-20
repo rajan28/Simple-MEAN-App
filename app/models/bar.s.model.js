@@ -33,6 +33,46 @@ var BarSchema = new Schema( {
 	// hours : {
 	// 	type
 	// }
+
+});
+
+var BarReviewsSchema = new Schema( {
+	created : {
+		type : Date,
+		default : Date.now
+	},
+	title : {
+		type : String,
+		default : '',
+		trim : true,
+		required : 'Title cannot be blank'
+	},
+	content : {
+		type : String,
+		default : '',
+		trim : true
+	},
+	creator : {
+		type : Schema.ObjectId,
+		ref : 'User'
+	}
+});
+
+var BarRatingsSchema = new Schema( {
+	created : {
+		type : Date,
+		default : Date.now
+	},
+	rating : {
+		type : Number,
+		required : true
+	},
+	creator : {
+		type : Schema.ObjectId,
+		ref : 'User'
+	}
 });
 
 mongoose.model('Bar', BarSchema);
+mongoose.model('BarReviews', BarReviewsSchema);
+mongoose.model('BarRatings', BarRatingsSchema);

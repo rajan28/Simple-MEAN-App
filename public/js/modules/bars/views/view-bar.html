@@ -1,9 +1,10 @@
-<section class="chicken" data-ng-controller="BarCtrl" data-ng-init="findOne()">
-	<br><br><br><br>
-    <h1 data-ng-bind="bar.name"></h1>
+<section class="navbackground" data-ng-controller="BarCtrl" data-ng-init="findOne()">
+	<br>
+    <h1 class="first" data-ng-bind="bar.name"></h1>
 
     <my-maps id="map-canvas"></my-maps>
 <br><br>
     <h1><a href="/#!/directions">Get Directions</a></h1>
     <h1><a href="{{chatroom}}">See What People Are Saying</a></h1>
+    <h1><a href="{{reviewsPage}}">Write a Review</a></h1>
 </section>

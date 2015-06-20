@@ -7,6 +7,7 @@ exports.render = function(req, res) { //Renders information when called
 
 	res.render('index', {
 		title: 'Flamingo',
+		local: req.ip,
 		user : JSON.stringify(req.user),
 		provider : req.user ? req.user.provider : ''
 	});
