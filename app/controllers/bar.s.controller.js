@@ -100,6 +100,8 @@ exports.listRatings = function(req, res) {
 	});
 };
 
+// Find by ID Functions
+
 exports.barByID = function(req, res, next, id) {
 	Bar.findById(id).populate('creator', 'firstname lastname').exec(function(err, bar) {
 		if(err) {
@@ -113,14 +115,56 @@ exports.barByID = function(req, res, next, id) {
 	});
 };
 
+exports.reviewByID = function(req, res, next, id) {
+	BarReviews.findById(id).populate('creator', 'firstname lastname').exec(function(err, review) {
+		if(err) {
+			return next(err);
+		}
+		if(!review) {
+			return next(new Error('Failed to load review ' + id));
+		}
+		req.review = review;
+		next();
+	});
+};
+
+exports.ratingByID = function(req, res, next, id) {
+	BarRatings.findById(id).populate('creator', 'firstname lastname').exec(function(err, rating) {
+		if(err) {
+			return next(err);
+		}
+		if(!rating) {
+			return next(new Error('Failed to load review ' + id));
+		}
+		req.rating = rating;
+		next();
+	});
+};
+
+// Read Functions
+
 exports.read = function(req, res) {
 	res.json(req.bar);
 };
 
+exports.readReview = function(req, res) {
+	res.json(req.review);
+};
+
+exports.readRating = function(req, res) {
+	res.json(req.rating);
+};
+
 exports.update = function(req, res) {
 	var bar = req.bar;
-	bar.title = req.body.title;
-	bar.content = req.body.content;
+	bar.name = req.body.name;
+	bar.city = req.body.city;
+	bar.address = req.body.address;
+	bar.ageMin = req.body.ageMin;
+	bar.ageMax = req.body.ageMax;
+	bar.price = req.body.price;
+	bar.latitude = req.body.latitude;
+	bar.longitude = req.body.longitude;
 	bar.save(function(err) {
 		if(err) {
 			return res.status(400).send( {
@@ -132,6 +176,8 @@ exports.update = function(req, res) {
 		}
 	});
 };
+
+// Delete Functions
 
 exports.delete = function(req, res) {
 	var bar = req.bar;
@@ -146,6 +192,51 @@ exports.delete = function(req, res) {
 			res.json(bar);
 		}
 	});
+};
+
+exports.deleteReview = function(req, res) {
+	var review = req.review;
+
+	review.remove(function(err) {
+		if (err) {
+			return res.status(400).send( {
+				message : getErrorMessage
+			});
+		}
+		else {
+			res.json(review);
+		}
+	});
+};
+
+exports.deleteRating = function(req, res) {
+	var rating = req.rating;
+
+	rating.remove(function(err) {
+		if (err) {
+			return res.status(400).send( {
+				message : getErrorMessage
+			});
+		}
+		else {
+			res.json(rating);
+		}
+	});
+};
+
+exports.deleteAllRatings = function(req, res, next) {
+    BarRatings.find({}, function(err, ratings) {
+        var numRatings = ratings.length;
+        for (i = 0; i < numRatings; i++) {
+            ratings[i].remove(function (err) {
+                if (err) {
+                    return next(err);
+                }
+            })
+        }
+        console.log('All Ratings Have Been Deleted!');
+        res.redirect('/');
+    });
 };
 
 exports.hasAuthorization = function(req, res, next) {

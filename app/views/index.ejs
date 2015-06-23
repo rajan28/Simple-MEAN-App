@@ -19,13 +19,13 @@
             <nav id="nav">
                 <ul>
                     <li><a href="/#!/">Home</a></li>
-                    <li><a href="/#!/features">Features</a></li>
-                    <li><a href="/#!/contact">Contact</a></li>
+                    <li><a href="/#!/#two">Cities</a></li>
+                    <li><a href="/#!/#three">Contact</a></li>
                     <% if (user == null) { %>
                     <li><a href="/register" class="button special">Register</a></li>
                     <li><a href="/login" class="button special">Login</a></li>
                     <% } else { %>
-                    <li><a href="" class="button special">Profile</a></li>
+                    <li ng-controller="MainCtrl"><a ng-href="{{toProfile}}" class="button special">Profile</a></li>
                     <li><a href="/signout" class="button special">Signout</a></li>
                     <% } %>
                 </ul>
@@ -61,6 +61,7 @@
         <script src="js/skel.min.js"></script>
         <script src="js/skel-layers.min.js"></script>
         <script src="js/init.js"></script>
+
 
         <!-- Socket.io -->
         <script src="/socket.io/socket.io.js"></script>

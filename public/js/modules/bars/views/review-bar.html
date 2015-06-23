@@ -21,15 +21,4 @@
             <strong data-ng-bind="error"></strong>
         </div>
     </form>
-
-    <h1>Angular Star Rating Directive</h1>
-    <div star-rating ng-model="rating1" max="10" on-rating-selected="rateFunction(rating)"></div>
-    <star-rating ng-model="rating2" readonly="isReadonly"></star-rating>
-    <label>
-    <input type="checkbox" ng-model="isReadonly"/>
-    Is Readonly
-    </label>
-
-    <div><strong>Rating 1:</strong> {{rating1}}</div>
-    <div><strong>Rating 2:</strong> {{rating2}}</div>
 </section>

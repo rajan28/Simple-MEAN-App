@@ -1,12 +1,14 @@
-angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$firebaseObject', '$firebaseArray', 'FIREBASE_URL', 'Authentication', 'Bar', 'BarReview', 'BarRating', function($scope, $rootScope, $routeParams, $location, $firebaseObject, $firebaseArray, FIREBASE_URL, Authentication, Bar, BarReview, BarRating) {
+angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$firebaseObject', '$firebaseArray', '$resource', 'FIREBASE_URL', 'Authentication', 'Bar', 'BarReview', 'BarRating', function($scope, $rootScope, $routeParams, $location, $firebaseObject, $firebaseArray, $resource, FIREBASE_URL, Authentication, Bar, BarReview, BarRating) {
 	$scope.authentication = Authentication;
 
-	//Review Functions
-	$scope.reviewsPage = '/#!' + $location.path() + '/reviews';
-	//$scope.postReview = '/api/bars/' + '/reviews';
+	$scope.latitude = 50;
+	$scope.longitude = 50;
 
-	$scope.rating1 = 5;
-	$scope.rating2 = 2;
+	// Rating, Review Functions
+	$scope.reviewsPage = '/#!' + $location.path() + '/reviews';
+
+	$scope.rating1 = 5; //get request to ratings
+	$scope.rating2 = 5;
 	$scope.isReadonly = true;
 	$scope.rateFunction = function(rating) {
 	console.log("Rating selected: " + rating);
@@ -23,6 +25,35 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
 			$scope.error = errorResponse.data.message;
 		});
 	};
+
+	$scope.sendRating = function() {
+		var rating = new BarRating( {
+			rating : $scope.rating1,
+			user : window.user.username
+		});
+		for (i=0; i < 1; i++) {
+			for (i=0; i < $scope.ratings.length; i++) {
+				if ($scope.ratings[i].user == window.user.username) {
+					var ratingToRemove = $resource('api/bars/:barId/ratings/:ratingId', {
+						barId : $location.path().slice(6,30),
+						ratingId : $scope.ratings[i]._id
+					});
+					$scope.ratings[i].$remove(function (info) {
+						if (info) {
+							console.log('rating deleted');
+	                	};
+					});
+				};
+			};
+			rating.$save(function(res) {
+
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+	};
+
+
 
 	//Chat Functions
 	$scope.chatroom = '/#!' + $location.path() + '/chat';
@@ -41,9 +72,9 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
 			$scope.bar = data;
 			var groupRef = new Firebase(FIREBASE_URL + 'chatrooms/' + data.name + '/groups');
 			var mainRef = new Firebase(FIREBASE_URL + 'chatrooms/' + data.name + '/main');
-			var chatObj = $firebaseObject(mainRef);
-			chatObj.$loaded().then(function(obj) {
-				$scope.chats = obj;
+			var chatArray = $firebaseArray(mainRef);
+			chatArray.$loaded().then(function(arr) {
+				$scope.chats = arr;
 			});
 
 			groupRef.once('value', function(dataSnapshot) {
@@ -83,8 +114,10 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
 			group : $scope.group,
 			groupSize : $scope.groupSize,
 			sender : $scope.sender,
-			text : $scope.message
+			text : $scope.message,
+			time : Date.now()
 		});
+		$scope.message = '';
 	};
 
 	//Bar Functions
@@ -113,6 +146,9 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
 		$scope.bar = Bar.get( {
 			barId : $routeParams.barId
 		});
+		window.bar = $scope.bar;
+		$scope.reviews = BarReview.query();
+		$scope.ratings = BarRating.query();
 	};
 
 	$scope.update = function() {

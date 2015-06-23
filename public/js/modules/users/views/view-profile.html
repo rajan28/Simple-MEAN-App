@@ -1,3 +1,20 @@
 <section class="navbackground" ng-controller="UserCtrl">
-	<br><h1>Hi</h1>
+	<br>
+	<h1 class="first">Your Account Info</h1>
+
+	{{test}}
+
+	<div class="row">
+		<div class="6u 12u$(small)">
+			<p>Name: {{user.fullname}}</p>
+			<p>Age: {{user.age}}</p>
+			<p>Username: {{user.username}}</p>
+			<p>Email: {{user.email}}</p>
+
+			<p>Preferences: {{user.preferences}}</p>
+		</div>
+
+		<div class="6u$ 12u$(small)">
+			<a href="{{edit}}">Edit Your Account Settings</a>
+		</div>
 </section>

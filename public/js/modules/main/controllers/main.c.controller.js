@@ -2,6 +2,43 @@ angular.module('main').controller('MainCtrl', ['$scope', '$rootScope', '$locatio
 	$scope.authentication = Authentication;
 	$scope.logstatus = Authentication.user ? true : false;
 	$scope.name = Authentication.user ? Authentication.user.firstname : 'MEAN Application';
+	$scope.userID = Authentication.user ? Authentication.user.id : 'MEAN Application';
+	$scope.toProfile = '/#!/' + $scope.userID.toString();
+
+	var directionsDisplay;
+    var directionsService = new google.maps.DirectionsService();
+    google.maps.event.addDomListener(window, 'load', $scope.initialize);
+
+	$scope.initialize = function() {
+		directionsDisplay = new google.maps.DirectionsRenderer();
+		var mapOptions = {
+		zoom: 7,
+		center: new google.maps.LatLng(41.850033, -87.6500523)
+		};
+		var map = new google.maps.Map(document.getElementById('map-canvas'),
+	    mapOptions);
+		directionsDisplay.setMap(map);
+		directionsDisplay.setPanel(document.getElementById('directions-panel'));
+
+		var control = document.getElementById('control');
+		control.style.display = 'block';
+		map.controls[google.maps.ControlPosition.TOP_LEFT].push(control);
+	};
+
+	$scope.calcRoute = function() {
+		var start = document.getElementById('start').value;
+		var end = document.getElementById('end').value;
+		var request = {
+			origin: start,
+			destination: end,
+			travelMode: google.maps.TravelMode.DRIVING
+		};
+		directionsService.route(request, function(response, status) {
+	  		if (status == google.maps.DirectionsStatus.OK) {
+	    		directionsDisplay.setDirections(response);
+	  		};
+		});
+	};
 
 	$scope.queryHandler = function() {
 		var queryObject = {

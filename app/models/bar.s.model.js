@@ -29,6 +29,12 @@ var BarSchema = new Schema( {
 	},
 	price : {
 		type : Number
+	},
+	latitude : {
+		type : Number
+	},
+	longitude : {
+		type : Number
 	}
 	// hours : {
 	// 	type
@@ -52,6 +58,9 @@ var BarReviewsSchema = new Schema( {
 		default : '',
 		trim : true
 	},
+	user : {
+		type : String
+	},
 	creator : {
 		type : Schema.ObjectId,
 		ref : 'User'
@@ -65,6 +74,10 @@ var BarRatingsSchema = new Schema( {
 	},
 	rating : {
 		type : Number,
+		required : true
+	},
+	user : {
+		type : String,
 		required : true
 	},
 	creator : {

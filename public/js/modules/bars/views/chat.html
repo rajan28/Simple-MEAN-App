@@ -1,15 +1,17 @@
 <section class="navbackground" ng-controller="BarCtrl" data-ng-init="createInfo()">
 	<br>
 	<div class="container 50%">
-		<h2 class="first">{{bar.name}} Chat</h2>
-
+		<h1 class="first">{{bar.name}} Chat</h1>
 		<form ng-submit="main()" novalidate>
 			<input type="text" name="message" ng-model="message" placeholder="Write Your Message Here">
-			<input type="submit" value="submit">
+			<div class="submitDiv">
+				<input class="submit" type="submit" value="submit">
+			</div>
 		</form>
-
-		<div class="chat" ng-repeat="(key, chat) in chats">
-			<p class="messages">{{chat.text}}</p>
+		<div class="chat">
+			<div class="message" ng-repeat="chat in chats | orderBy : '-time'">
+				<p class="messages"><span class="sender">Group {{chat.group}}</span> {{chat.text}}</p>
+			</div>
 		</div>
 	</div>
 

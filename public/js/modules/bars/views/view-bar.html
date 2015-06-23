@@ -2,9 +2,25 @@
 	<br>
     <h1 class="first" data-ng-bind="bar.name"></h1>
 
-    <my-maps id="map-canvas"></my-maps>
+    <div ng-repeat="review in reviews">
+        <p><b>{{review.title}}</b>{{review.content}}</p>
+    </div>
+
+    <h1>Angular Star Rating Directive</h1>
+    <div star-rating ng-model="rating1" max="10" ng-click="sendRating()"></div> <!-- on-rating-selected="rateFunction(rating)" -->
+    <star-rating ng-model="rating2" readonly="isReadonly"></star-rating>
+    <label>
+    <input type="checkbox" ng-model="isReadonly"/>
+    Is Readonly
+    </label>
+
+    <div><strong>Rating 1:</strong> {{rating1}}</div>
+    <div><strong>Rating 2:</strong> {{rating2}}</div>
+
+    <my-maps id="map-canvas-small" latitude="latitude" longitude="longitude"></my-maps>
 <br><br>
     <h1><a href="/#!/directions">Get Directions</a></h1>
     <h1><a href="{{chatroom}}">See What People Are Saying</a></h1>
     <h1><a href="{{reviewsPage}}">Write a Review</a></h1>
+
 </section>

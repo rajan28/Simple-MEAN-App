@@ -9,6 +9,15 @@ myApp.config(['$locationProvider', function($locationProvider) {
 if (window.location.hash === '#_=_') {
     window.location.hash = '#!';
 }
+if (window.location.hash === '#one') {
+    window.location.hash = '#!';
+}
+if (window.location.hash === '#two') {
+    window.location.hash = '#!';
+}
+if (window.location.hash === '#three') {
+    window.location.hash = '#!';
+}
 
 angular.element(document).ready(function() {
     angular.bootstrap(document, ['myApp']);
@@ -28,8 +37,12 @@ myApp.directive('myMaps', function() {
         restrict : 'E',
         template : '<div></div>',
         replace : true,
+        scope : {
+          latitude : '=?',
+          longitude : '=?'
+        },
         link : function(scope, element, attrs) {
-            var coords = new google.maps.LatLng(50,50);
+            var coords = new google.maps.LatLng(scope.latitude,scope.longitude);
             var mapOptions = {
                 center : coords,
                 zoom : 8,
@@ -44,6 +57,35 @@ myApp.directive('myMaps', function() {
             marker.setMap(map);
         }
     };
+});
+
+myApp.directive('hello', function() {
+    // return {
+    //     link : function(scope, element, attrs) {
+    //         var options = scope.$eval(attrs.hi);
+    //         scope.hiMessage = options.message.split(" ");
+    //         element.text(result);
+    //     },
+    //     template : "<ul>\
+    //                   <li ng-repeat='word in hiMessage'>\
+    //                     {{word}}\
+    //                   </li>\
+    //                 </ul>"
+    // };
+
+    // return {
+    //     template : "<i>{{message}}</i>",
+    //     controller : function($scope) {
+    //       $scope.message = "from internal";
+    //     }
+    // };
+
+    // return {
+    //   template : "<p>this {{message}}</p>",
+    //   scope : {
+    //     message : '=?'
+    //   }
+    // };
 });
 
 myApp.directive("starRating", function() {
@@ -73,9 +115,9 @@ myApp.directive("starRating", function() {
           scope.toggle = function(index) {
             if (scope.readonly == undefined || scope.readonly == false){
               scope.ratingValue = index + 1;
-              scope.onRatingSelected({
-                rating: index + 1
-              });
+              // scope.onRatingSelected({
+              //   rating: index + 1
+              // });
             }
           };
           scope.$watch("ratingValue", function(oldVal, newVal) {
