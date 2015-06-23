@@ -11,6 +11,7 @@ node_modules/express
 node_modules/method-override
 node_modules/mongoose
 node_modules/morgan
+node_modules/nodemailer
 node_modules/passport-facebook
 node_modules/passport-local
 node_modules/passport

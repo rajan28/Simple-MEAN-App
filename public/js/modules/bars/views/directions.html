@@ -1,0 +1,22 @@
+<section class="navbackground" data-ng-controller="BarCtrl" data-ng-init="initialize(); findOne()">
+    <br>
+    <h1 class="first">Directions</h1>
+
+    <div id="control">
+      <form ng-submit="calcRoute()">
+        <strong>Start:</strong>
+        <input type="text" id="start" placeholder="Your Location">
+        <strong>End:</strong>
+        <input type="text" id="end" value="{{bar.address}}">
+        <select ng-model="transportMethod">
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+            <option value=""></option>
+        <input type="submit" value="submit">
+      </form>
+    </div>
+    <div id="directions-panel"></div>
+    <div id="map-canvas"></div>
+
+</section>
