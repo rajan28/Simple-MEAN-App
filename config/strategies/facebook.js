@@ -34,8 +34,8 @@ module.exports = function() {
     // }));
 
     passport.use('facebook', new FacebookStrategy({
-        clientID : '1582944231965493',
-        clientSecret : '14545a169a4f2ae33a5f2d485fbdb38e',
+        clientID : config.facebook.clientID,
+        clientSecret : config.facebook.clientSecret,
         callbackURL : config.facebook.callbackURL,
         passReqToCallback: true
     },
