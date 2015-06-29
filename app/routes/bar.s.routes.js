@@ -13,23 +13,24 @@ module.exports = function(app) {
 
 	app.route('/api/bars/:barId/reviews')
 		.get(bar.listReviews)
-		.post(user.requiresLogin, bar.addReviews);
+		.post(user.requiresLogin, bar.addReviews)
+		.delete(user.requiresLogin, bar.deleteAllReviews);
 
 	app.route('/api/bars/:barId/reviews/:reviewId')
 		.get(bar.readReview)
 		.delete(user.requiresLogin, /*bar.hasReviewAuthorization,*/ bar.deleteReview);
 
-	app.route('/api/bars/:barId/ratings')
-		.get(bar.listRatings)
-		.post(user.requiresLogin, bar.addRatings)
-		.delete(user.requiresLogin, bar.deleteAllRatings);
+	// app.route('/api/bars/:barId/ratings')
+	// 	.get(bar.listRatings)
+	// 	.post(user.requiresLogin, bar.addRatings)
+	// 	.delete(user.requiresLogin, bar.deleteAllRatings);
 
-	app.route('/api/bars/:barId/ratings/:ratingId')
-		.get(bar.readRating)
-		.delete(user.requiresLogin, /*bar.hasRatingAuthorization,*/ bar.deleteRating);
+	// app.route('/api/bars/:barId/ratings/:ratingId')
+	// 	.get(bar.readRating)
+	// 	.delete(user.requiresLogin, /*bar.hasRatingAuthorization,*/ bar.deleteRating);
 
 	app.param('barId', bar.barByID);
 	app.param('reviewId', bar.reviewByID);
-	app.param('ratingId', bar.ratingByID);
+	// app.param('ratingId', bar.ratingByID);
 
 };

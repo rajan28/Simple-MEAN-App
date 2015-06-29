@@ -45,7 +45,7 @@ var UserSchema = new Schema( {
 	},
 	email : {
 		type : String,
-    unique : true,
+    	unique : true,
 		match : [/.+\@.+\..+/, "Please enter a valid e-mail address"],
 		required : true
 	},
@@ -63,7 +63,16 @@ var UserSchema = new Schema( {
 		}, 'Password should be longer'
 		]
 	},
-	preferences : {
+	city : {
+		type : String
+	},
+	group1 : {
+		type : Array
+	},
+	group2 : {
+		type : Array
+	},
+	group3 : {
 		type : Array
 	},
 	salt : {
@@ -75,8 +84,6 @@ var UserSchema = new Schema( {
 	},
 	providerId : {
 		type : String
-	},
-	providerData : {
 	},
 	created : {
 		type : Date,
@@ -106,6 +113,8 @@ UserSchema.pre('save', function(next) {
 	}
  	next();
 });
+
+//to update password, we will need to delete existing password and then post another
 
 UserSchema.methods.hashPassword = function(password) {
  	return crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');

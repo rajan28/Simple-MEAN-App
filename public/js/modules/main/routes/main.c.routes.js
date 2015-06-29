@@ -3,10 +3,10 @@ angular.module('main').config(['$routeProvider', function($routeProvider) {
 	when('/', {
 		templateUrl : 'js/modules/main/views/index.html'
 	}).
-	when('/results', {
-		templateUrl : 'js/modules/main/views/results.html'
+	when('/cities', {
+		templateUrl : 'js/modules/main/views/list-cities.html'
 	}).
-	when('/directions', {
-		templateUrl : 'js/modules/main/views/directions.html'
+	when('/careers', {
+		templateUrl : 'js/modules/main/views/careers.html'
 	});
 }]);

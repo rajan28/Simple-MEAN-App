@@ -4,6 +4,21 @@ angular.module('main').controller('MainCtrl', ['$scope', '$rootScope', '$http', 
 	$scope.name = Authentication.user ? Authentication.user.firstname : 'MEAN Application';
 	$scope.userID = Authentication.user ? Authentication.user.id : 'MEAN Application';
 	$scope.toProfile = '/#!/' + $scope.userID.toString();
+	var body = angular.element(document).find('body');
+
+	$scope.watcher = function() {
+		$scope.$watch(function() {
+    		return $location.path();
+		}, function(value) {
+    		console.log(value);
+    		if ((value != '/') && (body.hasClass('landing'))) {
+    			body.removeClass('landing');
+    		};
+    		if ((value == '/') && (body.hasClass('landing') === false)) {
+    			body.addClass('landing');
+    		};
+		});
+	};
 
 	$scope.sendMail = function() {
 		var data = {

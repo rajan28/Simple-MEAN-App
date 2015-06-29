@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Bar = mongoose.model('Bar');
 var BarReviews = mongoose.model('BarReviews');
-var BarRatings = mongoose.model('BarRatings');
+// var BarRatings = mongoose.model('BarRatings');
 
 //Error Handling Function
 
@@ -50,20 +50,20 @@ exports.addReviews = function(req, res) {
 	});
 };
 
-exports.addRatings = function(req, res) {
-	var barRatings = new BarRatings(req.body);
+// exports.addRatings = function(req, res) {
+// 	var barRatings = new BarRatings(req.body);
 
-	barRatings.save(function(err) {
-		if (err) {
-			return res.status(400).send( {
-				message : getErrorMessage(err)
-			});
-		}
-		else {
-			res.json(barRatings);
-		}
-	});
-};
+// 	barRatings.save(function(err) {
+// 		if (err) {
+// 			return res.status(400).send( {
+// 				message : getErrorMessage(err)
+// 			});
+// 		}
+// 		else {
+// 			res.json(barRatings);
+// 		}
+// 	});
+// };
 
 //List Functions
 
@@ -89,16 +89,16 @@ exports.listReviews = function(req, res) {
 	});
 };
 
-exports.listRatings = function(req, res) {
-	BarRatings.find({}, function(err, ratings) {
-		if (err) {
-			return next(err);
-		}
-		else {
-			res.json(ratings);
-		}
-	});
-};
+// exports.listRatings = function(req, res) {
+// 	BarRatings.find({}, function(err, ratings) {
+// 		if (err) {
+// 			return next(err);
+// 		}
+// 		else {
+// 			res.json(ratings);
+// 		}
+// 	});
+// };
 
 // Find by ID Functions
 
@@ -128,18 +128,18 @@ exports.reviewByID = function(req, res, next, id) {
 	});
 };
 
-exports.ratingByID = function(req, res, next, id) {
-	BarRatings.findById(id).populate('creator', 'firstname lastname').exec(function(err, rating) {
-		if(err) {
-			return next(err);
-		}
-		if(!rating) {
-			return next(new Error('Failed to load review ' + id));
-		}
-		req.rating = rating;
-		next();
-	});
-};
+// exports.ratingByID = function(req, res, next, id) {
+// 	BarRatings.findById(id).populate('creator', 'firstname lastname').exec(function(err, rating) {
+// 		if(err) {
+// 			return next(err);
+// 		}
+// 		if(!rating) {
+// 			return next(new Error('Failed to load review ' + id));
+// 		}
+// 		req.rating = rating;
+// 		next();
+// 	});
+// };
 
 // Read Functions
 
@@ -151,9 +151,9 @@ exports.readReview = function(req, res) {
 	res.json(req.review);
 };
 
-exports.readRating = function(req, res) {
-	res.json(req.rating);
-};
+// exports.readRating = function(req, res) {
+// 	res.json(req.rating);
+// };
 
 exports.update = function(req, res) {
 	var bar = req.bar;
@@ -209,35 +209,50 @@ exports.deleteReview = function(req, res) {
 	});
 };
 
-exports.deleteRating = function(req, res) {
-	var rating = req.rating;
-
-	rating.remove(function(err) {
-		if (err) {
-			return res.status(400).send( {
-				message : getErrorMessage
-			});
-		}
-		else {
-			res.json(rating);
-		}
-	});
-};
-
-exports.deleteAllRatings = function(req, res, next) {
-    BarRatings.find({}, function(err, ratings) {
-        var numRatings = ratings.length;
-        for (i = 0; i < numRatings; i++) {
-            ratings[i].remove(function (err) {
+exports.deleteAllReviews = function(req, res, next) {
+    BarReviews.find({}, function(err, reviews) {
+        var numReviews = reviews.length;
+        for (i = 0; i < numReviews; i++) {
+            reviews[i].remove(function (err) {
                 if (err) {
                     return next(err);
                 }
             })
         }
-        console.log('All Ratings Have Been Deleted!');
+        console.log('All Reviews Have Been Deleted!');
         res.redirect('/');
     });
 };
+
+// exports.deleteRating = function(req, res) {
+// 	var rating = req.rating;
+
+// 	rating.remove(function(err) {
+// 		if (err) {
+// 			return res.status(400).send( {
+// 				message : getErrorMessage
+// 			});
+// 		}
+// 		else {
+// 			res.json(rating);
+// 		}
+// 	});
+// };
+
+// exports.deleteAllRatings = function(req, res, next) {
+//     BarRatings.find({}, function(err, ratings) {
+//         var numRatings = ratings.length;
+//         for (i = 0; i < numRatings; i++) {
+//             ratings[i].remove(function (err) {
+//                 if (err) {
+//                     return next(err);
+//                 }
+//             })
+//         }
+//         console.log('All Ratings Have Been Deleted!');
+//         res.redirect('/');
+//     });
+// };
 
 exports.hasAuthorization = function(req, res, next) {
 	if(req.bar.creator.id !== req.user.id) {

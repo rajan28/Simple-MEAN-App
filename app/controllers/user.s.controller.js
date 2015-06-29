@@ -179,15 +179,32 @@ exports.userByID = function(req, res, next, id) {
 };
 
 exports.updateByID = function(req, res, next) {
-    User.findByIdAndUpdate(req.user.id, req.body, function(err, user) {
-        if (err) {
-            return next(err);
+    var user = req.user;
+    user.firstname = req.body.firstname;
+    user.lastname = req.body.lastname;
+    user.gender = req.body.gender;
+    user.birthday = req.body.birthday;
+    user.email = req.body.email;
+    user.username = req.body.username;
+    user.password = req.body.password;
+    user.city = req.body.city;
+    user.group1 = req.body.group1;
+    user.group2 = req.body.group2;
+    user.group3 = req.body.group3;
+    user.salt = req.body.salt;
+    user.provider = req.body.provider;
+    user.providerId = req.body.providerId;
+    user.created = req.body.created;
+    user.save(function(err) {
+        if(err) {
+            return res.status(400).send( {
+                message : getErrorMessage(err)
+            });
         }
         else {
             res.json(user);
         }
     });
-
 };
 
 exports.deleteByID = function(req, res, next) {

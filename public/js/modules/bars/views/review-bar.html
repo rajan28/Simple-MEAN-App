@@ -1,24 +1,35 @@
-<section class="navbackground" data-ng-controller="BarCtrl" data-ng-init="findOne()">
+<section data-ng-controller="BarCtrl" data-ng-init="findOne()">
     <br>
-    <h1 class="first">Rate Your Experience!</h1>
-    <form data-ng-submit="createReview()" novalidate>
-        <div>
-            <label for="title">Title</label>
+    <div class="container 25% center-this">
+        <h2>Rate/Review Your Experience!</h2>
+        <form data-ng-submit="createReview()" novalidate>
+
+            <div star-rating ng-model="rating" id="rating" max="5"></div> <!-- on-rating-selected="rateFunction(rating)" -->
+            <div><label>Your rating: {{rating}}</label></div>
+
+            <br>
+
             <div>
-                <input type="text" data-ng-model="title" id="title" placeholder="Title" required>
+                <label for="title">Review Title:</label>
+                <div>
+                    <input class="input-spacing" type="text" data-ng-model="title" id="title" placeholder="Title" required>
+                </div>
             </div>
-        </div>
-        <div>
-            <label for="content">Content</label>
+
             <div>
-                <textarea data-ng-model="content" id="content" cols="30" rows="10" placeholder="Content"></textarea>
+                <label for="content">Review Content:</label>
+                <div>
+                    <textarea data-ng-model="content" id="content" cols="30" rows="10" placeholder="Write Your Review Here"></textarea>
+                </div>
             </div>
-        </div>
-        <div>
-            <input type="submit">
-        </div>
-        <div data-ng-show="error">
-            <strong data-ng-bind="error"></strong>
-        </div>
-    </form>
+
+            <div>
+                <input class="button-spacing" type="submit">
+            </div>
+
+            <div data-ng-show="error">
+                <strong data-ng-bind="error"></strong>
+            </div>
+        </form>
+    </div>
 </section>

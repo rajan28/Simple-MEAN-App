@@ -6,22 +6,40 @@ myApp.config(['$locationProvider', function($locationProvider) {
     $locationProvider.hashPrefix('!');
 }]);
 
+myApp.controller('MyRootController', function($scope, $location, $rootScope, $log) {
+      // your controller initialization here ...
+      $rootScope.$on("$locationChangeStart", function(event, next, current) { 
+        $log.info("location changing to:" + next); 
+      });
+});
+
 if (window.location.hash === '#_=_') {
     window.location.hash = '#!';
 }
-if (window.location.hash === '#one') {
+if (window.location.hash === '#!/#one') {
     window.location.hash = '#!';
 }
-if (window.location.hash === '#two') {
+if (window.location.hash === '#!/#two') {
     window.location.hash = '#!';
 }
-if (window.location.hash === '#three') {
+if (window.location.hash === '#!/#three') {
     window.location.hash = '#!';
 }
 
 angular.element(document).ready(function() {
     angular.bootstrap(document, ['myApp']);
 });
+
+var body = angular.element(document).find('body');
+// if (window.location.href !== "http://localhost:8000/#!/" || "http://localhost:8000/#!/#one" || "http://localhost:8000/#!/#two" || "http://localhost:8000/#!/#three") {
+//     body.removeClass('landing');
+// };
+
+// myApp.config(['$location', function($location) {
+//   if ($location.path !== '/' || '/#one' || '/#two' || '/#three') {
+//     body.removeClass('landing');
+//   };
+// }]);
 
 // myApp.run(['$rootScope', '$location', function($rootScope, $location) {
 //   $rootScope.$on('$routeChangeError', function(event, next, previous, error) {
@@ -32,32 +50,32 @@ angular.element(document).ready(function() {
 //   });
 // }]);
 
-myApp.directive('myMaps', function() {
-    return {
-        restrict : 'E',
-        template : '<div></div>',
-        replace : true,
-        scope : {
-          latitude : '=?',
-          longitude : '=?'
-        },
-        link : function(scope, element, attrs) {
-            var coords = new google.maps.LatLng(scope.latitude,scope.longitude);
-            var mapOptions = {
-                center : coords,
-                zoom : 8,
-                mapType : google.maps.MapTypeId.ROADMAP
-            };
-            var map = new google.maps.Map(document.getElementById(attrs.id), mapOptions);
-            var marker = new google.maps.Marker( {
-                position : coords,
-                map : map,
-                title : 'Hi'
-            });
-            marker.setMap(map);
-        }
-    };
-});
+// myApp.directive('myMaps', function() {
+//     return {
+//         restrict : 'E',
+//         template : '<div></div>',
+//         replace : true,
+//         scope : {
+//           latitude : '=?',
+//           longitude : '=?'
+//         },
+//         link : function(scope, element, attrs) {
+//             var coords = new google.maps.LatLng(scope.latitude,scope.longitude);
+//             var mapOptions = {
+//                 center : coords,
+//                 zoom : 8,
+//                 mapType : google.maps.MapTypeId.ROADMAP
+//             };
+//             var map = new google.maps.Map(document.getElementById(attrs.id), mapOptions);
+//             var marker = new google.maps.Marker( {
+//                 position : coords,
+//                 map : map,
+//                 title : 'Hi'
+//             });
+//             marker.setMap(map);
+//         }
+//     };
+// });
 
 myApp.directive('hello', function() {
     // return {

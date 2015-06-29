@@ -1,7 +1,8 @@
-<section class="navbackground" ng-controller="BarCtrl" data-ng-init="createInfo()">
+<section ng-controller="BarCtrl" data-ng-init="createInfo()">
 	<br>
 	<div class="container 50%">
-		<h1 class="first">{{bar.name}} Chat</h1>
+		<h2 class="center-this header-no-margin">{{bar.name}} Chat</h2>
+		<h4 class="center-this">You are Group {{group}}</h4>
 		<form ng-submit="main()" novalidate>
 			<input type="text" name="message" ng-model="message" placeholder="Write Your Message Here">
 			<div class="submitDiv">

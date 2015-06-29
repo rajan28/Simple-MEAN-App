@@ -1,22 +1,15 @@
-<section class="navbackground" ng-controller="UserCtrl">
-	<br>
-	<h1 class="first">Settings</h1>
-	<div class= "row">
-		<div class="6u 12u$(small)">
-			<h3>Edit Your Information</h3>
-			<ul>
-				<li>Email</li>
-				<li>Password</li>
-				<li>City of Residence</li>
-				<li>Groups</li>
-				<li>Ratings/Reviews</li>
-			</ul>
+<section ng-controller="UserCtrl" ng-init="findOne()">
+	<div class="container 75%">
+		<div id="name">
+			{{user}}
+			<h2>Change Your Name</h2>
+			<form ng-submit="update()" novalidate>
+				<input type="text" placeholder="First Name" ng-model="user.firstname" id="user.firstname">
+				<input type="text" placeholder="Last Name" ng-model="user.lastname" id="user.lastname">
+				<input type="password" placeholder="Enter Password to Confirm Change" ng-model="user.password" id="user.password">
+				<input type="submit" value="submit">
+			</form>
 		</div>
-		<div class="6u$ 12u$(small)">
-			<h3>Set/Edit Preferences</h3>
-			<ul>
-				<li>jskdlfjksdlf</li>
-			</ul>
 
-		</div>
+	</div>
 </section>

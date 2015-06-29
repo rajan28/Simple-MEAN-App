@@ -1,20 +1,89 @@
-<section class="navbackground" ng-controller="UserCtrl">
-	<br>
-	<h1 class="first">Your Account Info</h1>
+<section ng-controller="UserCtrl">
 
-	{{test}}
-
-	<div class="row">
-		<div class="6u 12u$(small)">
-			<p>Name: {{user.fullname}}</p>
-			<p>Age: {{user.age}}</p>
-			<p>Username: {{user.username}}</p>
-			<p>Email: {{user.email}}</p>
-
-			<p>Preferences: {{user.preferences}}</p>
+	<div class="container 75%">
+		<div class="row">
+			<section class="12u$ 12u$(small)">
+				<br>
+				<h3>General Account Settings</h3>
+				<table>
+					<thead>
+						<tr>
+							<td><strong>Value</strong></td>
+							<td><strong>Current Setting</strong></td>
+							<td><strong>Edit</strong></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Name</td>
+							<td>{{user.fullname}}</td>
+							<td><a href="{{editName}}">Edit</a></td>
+						</tr>
+						<tr>
+							<td>Username</td>
+							<td>{{user.username}}</td>
+							<td>Edit</td>
+						</tr>
+						<tr>
+							<td>Password</td>
+							<td>**********</td>
+							<td>Edit</td>
+						</tr>
+						<tr>
+							<td>Email</td>
+							<td>{{user.email}}</td>
+							<td>Edit</td>
+						</tr>
+						<tr>
+							<td>Gender</td>
+							<td>{{user.gender}}</td>
+							<td>Edit</td>
+						</tr>
+						<tr>
+							<td>Birthday</td>
+							<td>{{user.birthday}}</td>
+							<td>Edit</td>
+						</tr>
+					</tbody>
+				</table>
+				<h3>Account Preferences</h3>
+				<table>
+					<thead>
+						<tr>
+							<td><strong>Value</strong></td>
+							<td><strong>Current Setting</strong></td>
+							<td><strong>Edit</strong></td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Primary City</td>
+							<td>{{user.preferences[0]}}</td>
+							<td><i class="icon fa-pencil"></i>&nbsp;<i class="icon fa-times"></i></td>
+						</tr>
+						<tr>
+							<td>Group 1</td>
+							<td>{{user.preferences[1]}}</td>
+							<td><i class="icon fa-pencil"></i>&nbsp;<i class="icon fa-times"></i></td>
+						</tr>
+						<tr>
+							<td>Group 2</td>
+							<td>{{user.preferences[2]}}</td>
+							<td><i class="icon fa-pencil"></i>&nbsp;<i class="icon fa-times"></i></td>
+						</tr>
+						<tr>
+							<td>Group 3</td>
+							<td>{{user.preferences[3]}}</td>
+							<td><i class="icon fa-pencil"></i>&nbsp;<i class="icon fa-times"></i></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
 		</div>
+	</div>
 
-		<div class="6u$ 12u$(small)">
-			<a href="{{edit}}">Edit Your Account Settings</a>
-		</div>
+	<script type="text/ng-template" id="templateId">
+		<h1>Template</h1>
+		<p>This is my template</p>
+	</script>
 </section>

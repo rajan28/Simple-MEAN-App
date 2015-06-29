@@ -1,6 +1,18 @@
 angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$firebaseObject', '$firebaseArray', '$resource', 'FIREBASE_URL', 'Authentication', 'Bar', 'BarReview', 'BarRating', function($scope, $rootScope, $routeParams, $location, $firebaseObject, $firebaseArray, $resource, FIREBASE_URL, Authentication, Bar, BarReview, BarRating) {
 	$scope.authentication = Authentication;
 
+	$scope.featuredRating = 3;
+
+	//Carousel
+
+	$scope.initializeCarousel= function() {
+		$('.center').slick( {
+		  lazyLoad: 'ondemand',
+		  slidesToShow: 3,
+		  slidesToScroll: 1
+		});
+	};
+
 	// MAPS
 	$scope.directionUrl = '/#!' + $location.path() + '/directions';
 
@@ -19,24 +31,27 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
 		directionsDisplay.setMap(map);
 		directionsDisplay.setPanel(document.getElementById('directions-panel'));
 
-		var control = document.getElementById('control');
-		control.style.display = 'block';
-		map.controls[google.maps.ControlPosition.TOP_LEFT].push(control);
+		// var control = document.getElementById('control');
+		// control.style.display = 'block';
+		// map.controls[google.maps.ControlPosition.TOP_LEFT].push(control);
 	};
 
 	$scope.calcRoute = function() {
 		var start = document.getElementById('start').value;
 		var end = document.getElementById('end').value;
+		var mode = document.getElementById('mode').value;
 		var request = {
 			origin: start,
 			destination: end,
-			travelMode: google.maps.TravelMode.DRIVING
+			travelMode: google.maps.TravelMode[mode]
 		};
 		directionsService.route(request, function(response, status) {
 	  		if (status == google.maps.DirectionsStatus.OK) {
 	    		directionsDisplay.setDirections(response);
 	  		};
 		});
+
+		$scope.start = '';
 	};
 
 	$scope.latitude = 50;
@@ -45,17 +60,16 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
 	// Rating, Review Functions
 	$scope.reviewsPage = '/#!' + $location.path() + '/reviews';
 
-	$scope.rating1 = 5; //get request to ratings
+	$scope.rating = 5; //get request to ratings
 	$scope.rating2 = 5;
 	$scope.isReadonly = true;
-	$scope.rateFunction = function(rating) {
-	console.log("Rating selected: " + rating);
-	};
 
 	$scope.createReview = function() {
 		var review = new BarReview( {
+			rating : this.rating,
 			title : this.title,
-			content : this.content
+			content : this.content,
+			user : window.user.username
 		});
 		review.$save(function(res) {
 			// $location.path('bars/' + res._id);
@@ -64,32 +78,32 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
 		});
 	};
 
-	$scope.sendRating = function() {
-		var rating = new BarRating( {
-			rating : $scope.rating1,
-			user : window.user.username
-		});
-		for (i=0; i < 1; i++) {
-			for (i=0; i < $scope.ratings.length; i++) {
-				if ($scope.ratings[i].user == window.user.username) {
-					var ratingToRemove = $resource('api/bars/:barId/ratings/:ratingId', {
-						barId : $location.path().slice(6,30),
-						ratingId : $scope.ratings[i]._id
-					});
-					$scope.ratings[i].$remove(function (info) {
-						if (info) {
-							console.log('rating deleted');
-	                	};
-					});
-				};
-			};
-			rating.$save(function(res) {
+	// $scope.sendRating = function() {
+	// 	var rating = new BarRating( {
+	// 		rating : $scope.rating1,
+	// 		user : window.user.username
+	// 	});
+	// 	for (i=0; i < 1; i++) {
+	// 		for (i=0; i < $scope.ratings.length; i++) {
+	// 			if ($scope.ratings[i].user == window.user.username) {
+	// 				var ratingToRemove = $resource('api/bars/:barId/ratings/:ratingId', {
+	// 					barId : $location.path().slice(6,30),
+	// 					ratingId : $scope.ratings[i]._id
+	// 				});
+	// 				$scope.ratings[i].$remove(function (info) {
+	// 					if (info) {
+	// 						console.log('rating deleted');
+	//                 	};
+	// 				});
+	// 			};
+	// 		};
+	// 		rating.$save(function(res) {
 
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
-	};
+	// 		}, function(errorResponse) {
+	// 			$scope.error = errorResponse.data.message;
+	// 		});
+	// 	};
+	// };
 
 
 
@@ -186,7 +200,7 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
 		});
 		window.bar = $scope.bar;
 		$scope.reviews = BarReview.query();
-		$scope.ratings = BarRating.query();
+		// $scope.ratings = BarRating.query();
 	};
 
 	$scope.update = function() {

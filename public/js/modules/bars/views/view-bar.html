@@ -1,26 +1,98 @@
-<section class="navbackground" data-ng-controller="BarCtrl" data-ng-init="findOne()">
-	<br>
-    <h1 class="first" data-ng-bind="bar.name"></h1>
+<section class="location-background" data-ng-controller="BarCtrl" data-ng-init="findOne(); initializeCarousel()">
+    <br>
+    <div class="container">
+        <div class="row">
+            <section class="3u 12u$(small) center-this">
+                <div>
+                    <h2 class="header-no-margin" data-ng-bind="bar.name"></h2>
+                    <star-rating ng-model="rating2" max="5" readonly="isReadonly"></star-rating>
+                    <div><strong>{{rating2}}/5 Stars</strong></div>
+                    <div><strong>10 Reviews</strong></div>
+                </div>
+                <br>
+                <div class="location-info">
+                    <h3>Information</h3>
+                    <p>klsdjflksjdvksmdnkcl</p>
+                    <p>sjndklvsndkljvnslkdv</p>
+                </div>
+                <br>
+                <div class="location-hours">
+                    <h3>Pricing & Hours</h3>
+                </div>
+                <div>
+                    <i class="icon big rectangle color1 fa-check hvr-shrink"><h4 style="color:#ffffff;">Going</h4></i>
+                    <i class="icon big rectangle color1 fa-times hvr-shrink"><h4 style="color:#ffffff;">Not Going</h4></i>
+                </div>
+                <br>
+                <div>
+                    <a href="{{directionUrl}}" class="tooltip">
+                        <i class="icon big rounded color1 fa-location-arrow hvr-shrink"></i>
+                        <span>
+                            <img class="callout" src="images/tooltip_pointer.gif">
+                            <strong>Get Directions</strong>
+                        </span>
+                    </a>
+                    <a href="{{chatroom}}" class="tooltip">
+                        <i class="icon big rounded color9 fa-comments hvr-shrink"></i>
+                        <span>
+                            <img class="callout" src="images/tooltip_pointer.gif">
+                            <strong>See What People Are Saying</strong>
+                        </span>
+                    </a>
+                    <a href="{{reviewsPage}}" class="tooltip">
+                        <i class="icon big rounded color6 fa-pencil hvr-shrink"></i>
+                        <span>
+                            <img class="callout" src="images/tooltip_pointer.gif">
+                            <strong>Write a Review</strong>
+                        </span>
+                    </a>
+                </div>
+                <br>
+                <div>
+                    <h3>Total People Going: 233</h3>
+                    <h3>12 of your friends are going</h3>
+                    <strong>See Friends</strong>
+                </div>
+            </section>
+            <section class="9u$ 12u$(small)">
+                <div class="row">
+                    <div class="12u$ 12u$(small) center-this">
+                        <p class="location-header header-no-margin">
+                            <i class="icon fa-check hvr-shrink">Going</i>
+                            &nbsp;|&nbsp;
+                            <i class="icon fa-times hvr-shrink">Show Me Another Option</i> 
+                            &nbsp;|&nbsp;
+                            233 Flamingo Users Going
+                            &nbsp;|&nbsp;
+                            12 Facebook Friends Going (List)
+                        </p>
+                        <br>
+                    </div>
+                </div>
+                <div class="row center-this">
+                    <div class="8u 12u$(small) location-img-format">
+                        <img src="../images/pic02.jpg">
+                    </div>
+                    <div class="4u$ 12u$(small)">
+                        <div class="location-featured-review">
+                            <h3>Featured Review</h3>
+                            <img class="center-this" src="../images/profile_placeholder.gif">
+                            <star-rating ng-model="featuredRating" max="5" readonly="isReadonly"></star-rating>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="12u$ 12u$(small)">
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
 
     <div ng-repeat="review in reviews">
         <p><b>{{review.title}}</b>{{review.content}}</p>
     </div>
-
-    <h1>Angular Star Rating Directive</h1>
-    <div star-rating ng-model="rating1" max="10" ng-click="sendRating()"></div> <!-- on-rating-selected="rateFunction(rating)" -->
-    <star-rating ng-model="rating2" readonly="isReadonly"></star-rating>
-    <label>
-    <input type="checkbox" ng-model="isReadonly"/>
-    Is Readonly
-    </label>
-
-    <div><strong>Rating 1:</strong> {{rating1}}</div>
-    <div><strong>Rating 2:</strong> {{rating2}}</div>
-
-    <my-maps id="map-canvas-small" latitude="latitude" longitude="longitude"></my-maps>
-<br><br>
-    <h1><a href="{{directionUrl}}">Get Directions</a></h1>
-    <h1><a href="{{chatroom}}">See What People Are Saying</a></h1>
-    <h1><a href="{{reviewsPage}}">Write a Review</a></h1>
 
 </section>

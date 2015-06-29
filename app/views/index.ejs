@@ -11,28 +11,28 @@
 
     </head>
 
-    <body class="landing">
+    <body ng-controller="MainCtrl" class="landing" ng-init="watcher()">
 
     <!-- Header -->
         <header id="header">
             <h1><a class="color-primary" href="/#!/">Flamingo</a></h1>
             <nav id="nav">
                 <ul>
-                    <li><a href="/#!/">Home</a></li>
-                    <li><a href="/#!/#two">Cities</a></li>
-                    <li><a href="/#!/#three">Contact</a></li>
+                    <li><a class="hvr-underline-from-left" href="/#!/">Home</a></li>
+                    <li><a class="hvr-underline-from-left" href="/#!/#two">Cities</a></li>
+                    <li><a class="hvr-underline-from-left" href="/#!/#three">Contact</a></li>
                     <% if (user == null) { %>
-                    <li><a href="/register" class="button special">Register</a></li>
-                    <li><a href="/login" class="button special">Login</a></li>
+                    <li><a href="/register" class="button special hvr-push">Register</a></li>
+                    <li><a href="/login" class="button special hvr-push">Login</a></li>
                     <% } else { %>
-                    <li ng-controller="MainCtrl"><a ng-href="{{toProfile}}" class="button special">Profile</a></li>
-                    <li><a href="/signout" class="button special">Signout</a></li>
+                    <li><a ng-href="{{toProfile}}" class="button special hvr-push">Profile</a></li>
+                    <li><a href="/signout" class="button special hvr-push">Signout</a></li>
                     <% } %>
                 </ul>
             </nav>
         </header>
 
-        <main ng-view></main>
+        <main ng-view autoscroll="true"></main>
         
         <!--
         <% if ( user ) { %>
@@ -80,6 +80,7 @@
         <script src="js/modules/users/user.c.module.js"></script>
         <script src="js/modules/users/controllers/user.c.controller.js"></script>
         <script src="js/modules/users/services/authentication.c.service.js"></script>
+        <script src="js/modules/users/services/user.c.service.js"></script>
         <script src="js/modules/users/routes/user.c.routes.js"></script>
 
         <script type="text/javascript" src="js/modules/articles/article.c.module.js"></script>
@@ -112,12 +113,12 @@
         <script src="bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
-        <!-- Firebase/Firechat -->
+        <!-- Firebase -->
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
         <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
         <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
-        <link rel='stylesheet' href='https://cdn.firebase.com/libs/firechat/2.0.1/firechat.min.css'>
-        <script src='https://cdn.firebase.com/libs/firechat/2.0.1/firechat.min.js'></script>
+
+        <!-- Carousel -->
 
         <!-- Angular App -->
         <script src="app.js"></script>
