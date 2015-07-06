@@ -1,14 +1,168 @@
 <section ng-controller="UserCtrl" ng-init="findOne()">
-	<div class="container 75%">
-		<div id="name">
-			{{user}}
-			<h2>Change Your Name</h2>
-			<form ng-submit="update()" novalidate>
-				<input type="text" placeholder="First Name" ng-model="user.firstname" id="user.firstname">
-				<input type="text" placeholder="Last Name" ng-model="user.lastname" id="user.lastname">
-				<input type="password" placeholder="Enter Password to Confirm Change" ng-model="user.password" id="user.password">
-				<input type="submit" value="submit">
-			</form>
+	<div class="edits">
+		<div class="center-this">
+			<div class="container 25%">
+				<div id="name">
+					<br>
+					<br>
+					<br>
+					<h2>Change Your Name</h2>
+					<p>{{error}}</p>
+					<form ng-submit="update()" novalidate>
+						<input type="text" placeholder="First Name" ng-model="user.firstname" id="user.firstname">
+						<input type="text" placeholder="Last Name" ng-model="user.lastname" id="user.lastname">
+						<input type="password" placeholder="Enter Password to Confirm Change" ng-model="password" id="password">
+						<input type="submit" value="submit">
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="center-this">
+			<div class="container 25%">
+				<div id="username">
+					<br>
+					<br>
+					<br>
+					<h2>Change Your Username</h2>
+					<p>{{error}}</p>
+					<form ng-submit="update()" novalidate>
+						<input type="text" placeholder="Username" ng-model="user.username" id="user.username">
+						<input type="password" placeholder="Enter Password to Confirm Change" ng-model="password" id="password">
+						<input type="submit" value="submit">
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="center-this">
+			<div class="container 25%">
+				<div id="password">
+					<br>
+					<br>
+					<br>
+					<h2>Change Password</h2>
+					<p>{{error}}</p>
+					<form ng-submit="updatePassword()" novalidate>
+						<input type="password" placeholder="Enter Current Password" ng-model="password" id="password">
+						<input type="password" placeholder="Enter New Password" ng-model="newPassword" id="new">
+						<input type="password" placeholder="Confirm New Password" ng-model="confirmation" id="confirmation">
+						<input type="submit" value="submit">
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="center-this">
+			<div class="container 25%">
+				<div id="email">
+					<br>
+					<br>
+					<br>
+					<h2>Change Email</h2>
+					<p>{{error}}</p>
+					<form ng-submit="update()" novalidate>
+						<input type="text" placeholder="Enter Email" ng-model="user.email" id="user.email">
+						<input type="password" placeholder="Enter Password to Confirm Change" ng-model="password" id="password">
+						<input type="submit" value="submit">
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="center-this">
+			<div class="container 25%">
+				<div id="gender">
+					<br>
+					<br>
+					<br>
+					<h2>Change Gender</h2>
+					<p>{{error}}</p>
+					<form ng-submit="update()" novalidate>
+						<input type="text" placeholder="Enter Gender" ng-model="user.gender" id="user.gender">
+						<input type="password" placeholder="Enter Password to Confirm Change" ng-model="password" id="password">
+						<input type="submit" value="submit">
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="center-this">
+			<div class="container 25%">
+				<div id="birthday">
+					<br>
+					<br>
+					<br>
+					<h2>Change Birthday</h2>
+					<p>{{error}}</p>
+					<form ng-submit="update()" novalidate>
+						<input type="text" placeholder="Enter Birthday" ng-model="user.birthday" id="user.birthday">
+						<input type="password" placeholder="Enter Password to Confirm Change" ng-model="password" id="password">
+						<input type="submit" value="submit">
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="center-this">
+			<div class="container 25%">
+				<div id="avatar">
+					<br>
+					<br>
+					<br>
+					<h2>Profile Picture Feature Not Yet Available. Check Back Later!</h2>
+				</div>
+			</div>
+		</div>
+
+		<div class="center-this">
+			<div class="container 25%">
+				<div id="city">
+					<br>
+					<br>
+					<br>
+					<h2>Change Primary City</h2>
+					<p>{{error}}</p>
+					<form ng-submit="update()" novalidate>
+						<input type="text" placeholder="Enter Your Primary City" ng-model="user.city" id="user.city">
+						<input type="password" placeholder="Enter Password to Confirm Change" ng-model="password" id="password">
+						<input type="submit" value="submit">
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="center-this">
+			<div class="container 25%">
+				<div id="g1">
+					<br>
+					<br>
+					<br>
+					<h2>Group Feature Not Yet Available. Check Back Later!</h2>
+				</div>
+			</div>
+		</div>
+
+		<div class="center-this">
+			<div class="container 25%">
+				<div id="g2">
+					<br>
+					<br>
+					<br>
+					<h2>Group Feature Not Yet Available. Check Back Later!</h2>
+				</div>
+			</div>
+		</div>
+
+		<div class="center-this">
+			<div class="container 25%">
+				<div id="g3">
+					<br>
+					<br>
+					<br>
+					<h2>Group Feature Not Yet Available. Check Back Later!</h2>
+				</div>
+			</div>
 		</div>
 
 	</div>

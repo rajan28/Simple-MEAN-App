@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var passport = require('passport');
+var crypto = require('crypto');
 
 // var newUser = User({
 //  firstname : "bob",
@@ -186,7 +187,14 @@ exports.updateByID = function(req, res, next) {
     user.birthday = req.body.birthday;
     user.email = req.body.email;
     user.username = req.body.username;
-    user.password = req.body.password;
+    if (crypto.pbkdf2Sync(req.body.password, req.body.salt, 10000, 64).toString('base64') === user.password) {
+        user.password = req.body.password;
+    }
+    else {
+        return res.status(400).send( {
+            message : 'Invalid Password'
+        });
+    }
     user.city = req.body.city;
     user.group1 = req.body.group1;
     user.group2 = req.body.group2;

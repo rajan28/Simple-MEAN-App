@@ -28,13 +28,33 @@ var BarSchema = new Schema( {
 		required : true
 	},
 	price : {
-		type : Number
+		type : Number,
+		required : true,
+		enum : [1,2,3]
 	},
 	latitude : {
 		type : Number
 	},
 	longitude : {
 		type : Number
+	},
+	information : {
+		type : String,
+		required : true
+	},
+	hours : {
+		type : String,
+		required : true
+	},
+	featured : {
+		type : Boolean,
+		required : true
+	},
+	pic1 : {
+		type : String
+	},
+	pic2 : {
+		type : String
 	}
 	// hours : {
 	// 	type
@@ -62,6 +82,10 @@ var BarReviewsSchema = new Schema( {
 	},
 	user : {
 		type : String
+	},
+	barNameAndCity : {
+		type : String,
+		required : true
 	},
 	creator : {
 		type : Schema.ObjectId,

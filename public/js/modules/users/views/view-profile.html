@@ -22,27 +22,27 @@
 						<tr>
 							<td>Username</td>
 							<td>{{user.username}}</td>
-							<td>Edit</td>
+							<td><a href="{{editUsername}}">Edit</a></td>
 						</tr>
 						<tr>
 							<td>Password</td>
 							<td>**********</td>
-							<td>Edit</td>
+							<td><a href="{{editPassword}}">Edit</a></td>
 						</tr>
 						<tr>
 							<td>Email</td>
 							<td>{{user.email}}</td>
-							<td>Edit</td>
+							<td><a href="{{editEmail}}">Edit</a></td>
 						</tr>
 						<tr>
 							<td>Gender</td>
 							<td>{{user.gender}}</td>
-							<td>Edit</td>
+							<td><a href="{{editGender}}">Edit</a></td>
 						</tr>
 						<tr>
 							<td>Birthday</td>
 							<td>{{user.birthday}}</td>
-							<td>Edit</td>
+							<td><a href="{{editBirthday}}">Edit</a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -57,24 +57,29 @@
 					</thead>
 					<tbody>
 						<tr>
+							<td>Profile Picture</td>
+							<td>{{user.avatar}}</td>
+							<td>&nbsp;&nbsp;<a href="{{editAvatar}}"><i class="icon fa-camera-retro hvr-shrink"></i></a></td>
+						</tr>
+						<tr>
 							<td>Primary City</td>
-							<td>{{user.preferences[0]}}</td>
-							<td><i class="icon fa-pencil"></i>&nbsp;<i class="icon fa-times"></i></td>
+							<td>{{user.city}}</td>
+							<td>&nbsp;&nbsp;<a href="{{editCity}}"><i class="icon fa-pencil hvr-shrink"></i></a></td>
 						</tr>
 						<tr>
 							<td>Group 1</td>
-							<td>{{user.preferences[1]}}</td>
-							<td><i class="icon fa-pencil"></i>&nbsp;<i class="icon fa-times"></i></td>
+							<td>{{user.group1}}</td>
+							<td>&nbsp;&nbsp;<a href="{{editG1}}"><i class="icon fa-pencil hvr-shrink"></i></a></td>
 						</tr>
 						<tr>
 							<td>Group 2</td>
-							<td>{{user.preferences[2]}}</td>
-							<td><i class="icon fa-pencil"></i>&nbsp;<i class="icon fa-times"></i></td>
+							<td>{{user.group2}}</td>
+							<td>&nbsp;&nbsp;<a href="{{editG2}}"><i class="icon fa-pencil hvr-shrink"></i></a></td>
 						</tr>
 						<tr>
 							<td>Group 3</td>
-							<td>{{user.preferences[3]}}</td>
-							<td><i class="icon fa-pencil"></i>&nbsp;<i class="icon fa-times"></i></td>
+							<td>{{user.group3}}</td>
+							<td>&nbsp;&nbsp;<a href="{{editG3}}"><i class="icon fa-pencil hvr-shrink"></i></a></td>
 						</tr>
 					</tbody>
 				</table>

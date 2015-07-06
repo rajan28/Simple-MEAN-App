@@ -1,4 +1,4 @@
-<section class="location-background" data-ng-controller="BarCtrl" data-ng-init="findOne(); initializeCarousel()">
+<section class="location-background" data-ng-controller="BarCtrl" data-ng-init="findOne(); initializeViewBar()">
     <br>
     <div class="container">
         <div class="row">
@@ -10,6 +10,27 @@
                     <div><strong>10 Reviews</strong></div>
                 </div>
                 <br>
+                <div>
+                    <a href="{{directionUrl}}" class="tooltip">
+                        <i class="icon big rounded color1 fa-location-arrow hvr-shrink"></i>
+                        <span>
+                            <strong>Get Directions</strong>
+                        </span>
+                    </a>
+                    <a href="{{chatroom}}" class="tooltip">
+                        <i class="icon big rounded color9 fa-comments hvr-shrink"></i>
+                        <span>
+                            <strong>Enter Chatroom</strong>
+                        </span>
+                    </a>
+                    <a href="{{reviewsPage}}" class="tooltip">
+                        <i class="icon big rounded color6 fa-pencil hvr-shrink"></i>
+                        <span>
+                            <strong>Write a Review</strong>
+                        </span>
+                    </a>
+                </div>
+                <br>
                 <div class="location-info">
                     <h3>Information</h3>
                     <p>klsdjflksjdvksmdnkcl</p>
@@ -18,40 +39,6 @@
                 <br>
                 <div class="location-hours">
                     <h3>Pricing & Hours</h3>
-                </div>
-                <div>
-                    <i class="icon big rectangle color1 fa-check hvr-shrink"><h4 style="color:#ffffff;">Going</h4></i>
-                    <i class="icon big rectangle color1 fa-times hvr-shrink"><h4 style="color:#ffffff;">Not Going</h4></i>
-                </div>
-                <br>
-                <div>
-                    <a href="{{directionUrl}}" class="tooltip">
-                        <i class="icon big rounded color1 fa-location-arrow hvr-shrink"></i>
-                        <span>
-                            <img class="callout" src="images/tooltip_pointer.gif">
-                            <strong>Get Directions</strong>
-                        </span>
-                    </a>
-                    <a href="{{chatroom}}" class="tooltip">
-                        <i class="icon big rounded color9 fa-comments hvr-shrink"></i>
-                        <span>
-                            <img class="callout" src="images/tooltip_pointer.gif">
-                            <strong>See What People Are Saying</strong>
-                        </span>
-                    </a>
-                    <a href="{{reviewsPage}}" class="tooltip">
-                        <i class="icon big rounded color6 fa-pencil hvr-shrink"></i>
-                        <span>
-                            <img class="callout" src="images/tooltip_pointer.gif">
-                            <strong>Write a Review</strong>
-                        </span>
-                    </a>
-                </div>
-                <br>
-                <div>
-                    <h3>Total People Going: 233</h3>
-                    <h3>12 of your friends are going</h3>
-                    <strong>See Friends</strong>
                 </div>
             </section>
             <section class="9u$ 12u$(small)">
@@ -62,7 +49,7 @@
                             &nbsp;|&nbsp;
                             <i class="icon fa-times hvr-shrink">Show Me Another Option</i> 
                             &nbsp;|&nbsp;
-                            233 Flamingo Users Going
+                            233 Koyn Users Going
                             &nbsp;|&nbsp;
                             12 Facebook Friends Going (List)
                         </p>
@@ -71,14 +58,34 @@
                 </div>
                 <div class="row center-this">
                     <div class="8u 12u$(small) location-img-format">
-                        <img src="../images/pic02.jpg">
+                        <div id="owl-demo" class="owl-carousel">
+                            <div class="item"><img src="images/pic02.jpg"></div>
+                            <div class="item"><img src="images/pic07.jpg"></div>
+                            <div class="item"><img src="images/pic04.jpg"></div>
+                            <div class="item"><img src="images/pic08.jpg"></div>
+                            <div class="item"><img src="images/pic03.jpg"></div>
+                            <div class="item"><img src="images/pic07.jpg"></div>
+                        </div>
+                        <div id="location-map-canvas"></div>
                     </div>
                     <div class="4u$ 12u$(small)">
-                        <div class="location-featured-review">
+                        <div class="location-featured-review center-this">
                             <h3>Featured Review</h3>
-                            <img class="center-this" src="../images/profile_placeholder.gif">
-                            <star-rating ng-model="featuredRating" max="5" readonly="isReadonly"></star-rating>
-
+                            <div class="center-this"><img class="center-this" src="../images/profile_placeholder.gif"></div>
+                            <div class="center-this"><b>{{featuredName}}</b></div>
+                            <div class="center-this"><star-rating ng-model="featuredRating" max="5" readonly="isReadonly"></star-rating></div>
+                            <br>
+                            <p>This place is the absolue bestest. I'm going to come here every night until I die.</p>
+                        </div>
+                        <div>
+                            <h3>Recent Reviews</h3>
+                        </div>
+                        <div class="location-reviews" ng-repeat="review in reviews | limitTo:5">
+                            <p>
+                                <b>{{review.title}}</b><br>
+                                {{review.content}}<br>
+                                <star-rating ng-model="review.rating" max="5" readonly="isReadonly">
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -89,10 +96,6 @@
 
             </section>
         </div>
-    </div>
-
-    <div ng-repeat="review in reviews">
-        <p><b>{{review.title}}</b>{{review.content}}</p>
     </div>
 
 </section>

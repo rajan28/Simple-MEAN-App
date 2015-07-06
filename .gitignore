@@ -13,6 +13,7 @@ node_modules/method-override
 node_modules/mongoose
 node_modules/morgan
 node_modules/ng-dialog
+node_modules/ng-file-upload
 node_modules/nodemailer
 node_modules/passport-facebook
 node_modules/passport-local

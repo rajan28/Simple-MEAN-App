@@ -10,7 +10,6 @@ angular.module('main').controller('MainCtrl', ['$scope', '$rootScope', '$http', 
 		$scope.$watch(function() {
     		return $location.path();
 		}, function(value) {
-    		console.log(value);
     		if ((value != '/') && (body.hasClass('landing'))) {
     			body.removeClass('landing');
     		};

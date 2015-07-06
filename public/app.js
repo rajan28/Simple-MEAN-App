@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngResource', 'uiGmapgoogle-maps', 'firebase', 'main', 'user', 'article', 'bar', 'restaurant', 'club', 'chat']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngResource', 'ngFileUpload', 'uiGmapgoogle-maps', 'firebase', 'main', 'user', 'article', 'bar', 'restaurant', 'club', 'chat']);
 
 myApp.constant('FIREBASE_URL', 'https://startup-stuff.firebaseio.com/');
 

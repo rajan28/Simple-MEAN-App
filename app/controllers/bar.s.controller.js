@@ -78,8 +78,8 @@ exports.list = function(req, res) {
     });
 };
 
-exports.listReviews = function(req, res) {
-	BarReviews.find({}, function(err, reviews) {
+exports.listReviews = function(req, res, next) {
+	BarReviews.find({barNameAndCity : req.bar.name+' '+req.bar.city}).populate('creator', 'firstname lastname').exec(function(err, reviews) {
 		if (err) {
 			return next(err);
 		}
@@ -165,6 +165,10 @@ exports.update = function(req, res) {
 	bar.price = req.body.price;
 	bar.latitude = req.body.latitude;
 	bar.longitude = req.body.longitude;
+	bar.information = req.body.information;
+	bar.hours = req.body.hours;
+	bar.featured = req.body.featured;
+	bar.pictures = req.body.pictures;
 	bar.save(function(err) {
 		if(err) {
 			return res.status(400).send( {

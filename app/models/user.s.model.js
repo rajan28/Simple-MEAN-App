@@ -75,6 +75,13 @@ var UserSchema = new Schema( {
 	group3 : {
 		type : Array
 	},
+	// profPic: [{
+ //        picURL: String,
+ //        date: {
+ //            type: Date,
+ //            default: Date.now
+ //        }
+ //    }],
 	salt : {
 		type : String
 	},

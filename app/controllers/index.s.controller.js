@@ -15,7 +15,7 @@ exports.render = function(req, res) { //Renders information when called
 	req.session.lastVisit = new Date();
 
 	res.render('index', {
-		title: 'Flamingo',
+		title: 'Koyn',
 		local: req.ip,
 		user : JSON.stringify(req.user),
 		provider : req.user ? req.user.provider : ''
