@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngResource', 'ngFileUpload', 'uiGmapgoogle-maps', 'firebase', 'main', 'user', 'article', 'bar', 'restaurant', 'club', 'chat']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngResource', 'uiGmapgoogle-maps', 'firebase', 'main', 'user', 'article', 'bar', 'restaurant', 'club', 'chat']);
 
 myApp.constant('FIREBASE_URL', 'https://startup-stuff.firebaseio.com/');
 
@@ -144,6 +144,27 @@ myApp.directive("starRating", function() {
         }
     };
 });
+
+// var compareTo = function() {
+//   return {
+//     require: "ngModel",
+//     scope: {
+//       otherModelValue: "=compareTo"
+//     },
+//     link: function(scope, element, attributes, ngModel) {
+
+//       ngModel.$validators.compareTo = function(modelValue) {
+//         return modelValue == scope.otherModelValue;
+//       };
+
+//       scope.$watch("otherModelValue", function() {
+//         ngModel.$validate();
+//       });
+//     }
+//   };
+// };
+
+// myApp.directive("compareTo", compareTo);
 
 // angular.module('myApp').config(['$routeProvider', function($routeProvider) {
 //     $routeProvider.

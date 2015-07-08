@@ -25,6 +25,8 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
 
     // MAPS
 
+    $scope.directionUrl = '/#!' + $location.path() + '/directions';
+
     var map;
     google.maps.event.addDomListener(window, 'load', $scope.initializeViewBar);
 
@@ -43,19 +45,39 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
 
           var locationPos = new google.maps.LatLng(window.bar.latitude, window.bar.longitude);
 
+          var contentString = '<p>You are here.<br><a href="' + $scope.directionUrl + '">Get Directions to ' + $scope.bar.name + '</a></p>';
+
           var infowindow = new google.maps.InfoWindow({
-            map: map,
-            position: pos,
-            content: 'You are here.'
+              content: contentString
           });
 
           var marker = new google.maps.Marker({
+            map: map,
+            position: pos,
+            title: 'You are here.'
+          });
+
+          google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map, marker);
+          });
+
+          var locationcontentString = '<h2>' + $scope.bar.name + '</h2>' + '<p>sdfsd</p>';
+
+          var locationinfowindow = new google.maps.InfoWindow({
+              content: locationcontentString
+          });
+
+          var locationmarker = new google.maps.Marker({
             position: locationPos,
             map: map,
             title: 'Hello World!'
           });
 
-          map.setCenter(pos);
+          google.maps.event.addListener(locationmarker, 'click', function() {
+            locationinfowindow.open(map, locationmarker);
+          });
+
+          map.setCenter(locationPos);
         }, function() {
           handleNoGeolocation(true);
         });
@@ -81,8 +103,6 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
       var infowindow = new google.maps.InfoWindow(options);
       map.setCenter(options.position);
     };
-
-    $scope.directionUrl = '/#!' + $location.path() + '/directions';
 
     var directionsDisplay;
     var directionsService = new google.maps.DirectionsService();
@@ -222,6 +242,14 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
                     };
                 });         
             });
+
+// TODO Create a function that identifies and styles chats that were created by the current group
+
+            // for(i=0; i < $scope.chats.length; i++) {
+            //     if ($scope.chats[i].group === $scope.group) {
+            //         $
+            //     }
+            // };
         });
     };
 
@@ -245,19 +273,19 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
 
     $scope.create = function() {
         var bar = new Bar( {
-            name : this.name,
-            city : this.city,
-            address : this.address,
-            ageMin : this.ageMin,
-            ageMax : this.ageMax,
-            price : this.price,
-            latitude : this.latitude,
-            longitude : this.longitude,
-            information : this.information,
-            hours : this.hours,
-            featured : this.featured,
-            pic1 : this.pic1,
-            pic2 : this.pic2
+            name : this.newbar.name,
+            city : this.newbar.city,
+            address : this.newbar.address,
+            ageMin : this.newbar.ageMin,
+            ageMax : this.newbar.ageMax,
+            price : this.newbar.price,
+            latitude : this.newbar.latitude,
+            longitude : this.newbar.longitude,
+            information : this.newbar.information,
+            hours : this.newbar.hours,
+            featured : this.newbar.featured,
+            pic1 : this.newbar.pic1,
+            pic2 : this.newbar.pic2
         });
         bar.$save(function(res) {
             $location.path('bars/' + res._id);

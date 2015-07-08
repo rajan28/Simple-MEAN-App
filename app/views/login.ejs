@@ -13,52 +13,62 @@
 	<body>
 
         <header id="header">
-            <h1><a class="color-primary" href="/#!/">Flamingo</a></h1>
+            <h1><a class="color-primary" href="/#!/">Koyn</a></h1>
             <nav id="nav">
                 <ul>
                     <li><a href="/#!/">Home</a></li>
-                    <li><a href="/#!/features">Features</a></li>
-                    <li><a href="/#!/contact">Contact</a></li>
+                    <li><a href="/#!/two">Cities</a></li>
+                    <li><a href="/#!/three">Contact</a></li>
                     <li><a href="/register" class="button special">Register</a></li>
                     <li><a href="/login" class="button special">Login</a></li>
                 </ul>
             </nav>
         </header>
 
-        <br />
+        <br>
 
-        <section>
-        	<header class="major">
-        		<h2>Login</h2>
-                <% for(var i in messages) { %>
+		<div class="container 50% center-this">
+            <h2>Login</h2>
+            <% for(var i in messages) { %>
 
-                    <div class="flash">
-                        Login Error:
-                        <%= messages[i] %>
-                    </div>
-                <% } %>
-        	</header>
-        </section>   
-
-		<div class="container 50%">               
-			<form action="/login" method="post">
-				<div class="row uniform">
-					<div class="12u$">
-						<label>Username/Email:</label>
-						<input type="text" name="username" />
-					</div>
-					<div class="12u$">
-						<label>Password:</label>
-						<input type="password" name="password" />
-					</div>			
-					<div class="12u$">
-						<input type="submit" value="Login" class="special big">
-					</div>
-					<div class="12u$">
-						<a class="" href="/oauth/facebook">Login with Facebook</a>
-					</div>
-				</div>
-			</form>	
+                <div class="flash">
+                    Login Error:
+                    <%= messages[i] %>
+                </div>
+                <div class="notify">
+                    <h1>New to Koyn? <a href="/register">Register Here.</a></h1>
+                    <h1> If you've lost or forgotten your password, <a href="/#!/password">click here.</a></h1>
+                </div>
+            <% } %>
+            <div class="row">
+                <section class="6u 12u$(small) center-this">
+                    <h3>Standard Login</h3>              
+        			<form action="/login" method="post">
+        				<div class="row uniform">
+        					<div class="12u$">
+        						<label>Username/Email:</label>
+        						<input type="text" name="username" />
+        					</div>
+        					<div class="12u$">
+        						<label>Password:</label>
+        						<input type="password" name="password" />
+        					</div>			
+        					<div class="12u$">
+        						<input type="submit" value="Login" class="special big button-spacing">
+        					</div>
+                        </div>
+                    </form>
+                </section>
+                <section class="6u$ 12u$(small) center-this">
+    				<div class="12u$">
+                        <h3>Facebook Login</h3>
+    					<a class="" href="/oauth/facebook"><img class="img-vert-format" src="images/fb.png"></a>
+                        <br>
+                        <br>
+                        <br>
+    				</div>
+                </section>
+            </div>
 		</div>
 
     <!-- Footer -->

@@ -1,8 +1,10 @@
 angular.module('main').controller('MainCtrl', ['$scope', '$rootScope', '$http', '$location', 'Authentication', 'Bar', 'Club', 'Restaurant', function($scope, $rootScope, $http, $location, Authentication, Bar, Club, Restaurant) {
 	$scope.authentication = Authentication;
 	$scope.logstatus = Authentication.user ? true : false;
-	$scope.name = Authentication.user ? Authentication.user.firstname : 'MEAN Application';
-	$scope.userID = Authentication.user ? Authentication.user.id : 'MEAN Application';
+	$scope.firstname = Authentication.user ? Authentication.user.firstname : '';
+	$scope.name = Authentication.user ? Authentication.user.fullname : '';
+	$scope.email = Authentication.user ? Authentication.user.email : '';
+	$scope.userID = Authentication.user ? Authentication.user.id : '';
 	$scope.toProfile = '/#!/' + $scope.userID.toString();
 	var body = angular.element(document).find('body');
 
@@ -26,9 +28,6 @@ angular.module('main').controller('MainCtrl', ['$scope', '$rootScope', '$http', 
 			message : this.message
 		};
 
-
-		console.log(data);
-
 		$http.post('/contact', data).
 			success(function(data, status, headers, config) {
 				console.log('success');
@@ -40,6 +39,24 @@ angular.module('main').controller('MainCtrl', ['$scope', '$rootScope', '$http', 
 		$scope.name = '';
 		$scope.email = '';
 		$scope.message = '';
+	};
+
+	$scope.passwordReset = function() {
+		var data = {
+			email : this.recovery.email
+		};
+
+		$http.post('/passwordreset', data).
+			success(function(data, status, headers, config) {
+				console.log('success');
+			}).
+			error(function(data, status, headers, config) {
+				console.log('failure');
+			});
+
+		$scope.recovery.email = '';
+		alert('Thank you. If the email address entered corresponds with one of our accounts, . Please allow up t');
+		$location.path('/');
 	};
 
 	$scope.queryHandler = function() {
@@ -65,9 +82,10 @@ angular.module('main').controller('MainCtrl', ['$scope', '$rootScope', '$http', 
 			}).then(function(data) {
 				//if $scope.possibilities is empty, throw error to client
 				for (i=0; i < $scope.possibilities.length; i++) {
+					console.log($scope.possibilities[i]);
 					if ($scope.possibilities[i].featured) {
-						$rootScope.chosen = $scope.possibilities[i];
-						$location.path('bars/' + $scope.possibilities[i]._id);
+						console.log('hi');
+						return $location.path('bars/' + $scope.possibilities[i]._id);
 					};
 				};
 				$location.path('bars/' + $scope.possibilities[0]._id);

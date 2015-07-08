@@ -21,7 +21,9 @@ var getErrorMessage = function(err) {
 //Add Functions
 
 exports.add = function(req, res) {
+	console.log('hi');
 	var bar = new Bar(req.body);
+	console.log(req.body);
 
 	bar.save(function(err) {
 		if (err) {

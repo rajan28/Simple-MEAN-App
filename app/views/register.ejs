@@ -13,12 +13,12 @@
 	<body>
 
         <header id="header">
-            <h1><a class="color-primary" href="/#!/">Flamingo</a></h1>
+            <h1><a class="color-primary" href="/#!/">Koyn</a></h1>
             <nav id="nav">
                 <ul>
                     <li><a href="/#!/">Home</a></li>
-                    <li><a href="/#!/features">Features</a></li>
-                    <li><a href="/#!/contact">Contact</a></li>
+                    <li><a href="/#!/two">Cities</a></li>
+                    <li><a href="/#!/three">Contact</a></li>
                     <li><a href="/register" class="button special">Register</a></li>
                     <li><a href="/login" class="button special">Login</a></li>
                 </ul>
@@ -43,12 +43,14 @@
 		<div class="container">
 			<div class="row">
 				<section class="6u 12u$(small)">
-					<h2>Why Register for a Flamingo Account?</h2>
-					<p>Registering for an account will enable you to share your preferences with us, helping us direct you to a spot that better matches your preferences</p>
+					<h2>Why Register for a Koyn Account?</h2>
+					<p>Registering for an account will enable you to share your preferences with us, helping us direct you to your perfect night out.</p>
                     <h2>Register with Facebook</h2>
-                    <a class="" href="/oauth/facebook">Register with Facebook</a>
+                    <a class="" href="/oauth/facebook"><img class="img-vert-format" src="images/fb.png"></a>
+                    <br><br>
 				</section>
-				<section class="6u 12u$(small)">               
+				<section class="6u 12u$(small)">
+                    <h2>Standard Registration</h2>               
 					<form action="/register" method="post">
 						<div class="row uniform">
 							<div class="6u 12u$(small)">
@@ -83,13 +85,14 @@
 							</div>
 							<div class="6u 12u$(small)">
 								<label>Password:</label>
-								<input type="password" name="password" />
+								<input class="input-spacing" type="password" name="password" />
 							</div>
                             <div class="6u$ 12u$(small)">
                                 <label>Confirm Password:</label>
-                                <input type="password" name="confirmation" />
+                                <input class="input-spacing" type="password" name="confirmation" />
+                            </div>
 							<div class="12u$ 12u$(small)">
-								<input type="submit" value="Register" class="special big">
+								<input type="submit" value="Register" class="special big button-spacing">
 							</div>
 						</div>
 					</form>

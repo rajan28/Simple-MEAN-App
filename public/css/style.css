@@ -1260,6 +1260,11 @@
 	margin: 0 0 0 0;
 }
 
+.img-vert-format {
+	height: 20%;
+	width: 20%;
+}
+
 .location-background {
 	background-color: #fff;
 }
@@ -1327,6 +1332,25 @@
 	background-color: rgba(240, 220, 130, 0.5);
 	box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
 }
+
+.notify {
+    background-color: #e3f7fc; 
+    color: #555; 
+    border: .1em solid;
+    border-color: #8ed9f6;
+    border-radius: 10px;
+    font-size: 1.1em;
+    padding-top: 10px;
+    cursor: default;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.notify-yellow { 
+	background: #fff8c4;
+	border-color: #f7deae;
+}
+
 
 /*.blue {
 	font-weight : 700;
@@ -1451,7 +1475,7 @@
 
 .flash {
 	font-weight: 700;
-	font-size: 1.5em;
+	font-size: 1.3em;
 	text-align: center;
 	color: red;
 }
