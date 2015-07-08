@@ -12,9 +12,6 @@ module.exports = function(app) {
 	app.route('/contact')
 		.post(index.sendMail);
 
-	app.route('/passwordreset')
-		.post(index.sendPasswordResetMail);
-
 	app.route('/welcome')
 		.post(index.sendUserWelcomeMail);
 };

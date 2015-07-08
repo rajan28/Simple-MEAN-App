@@ -8,6 +8,7 @@ var methodOverride = require('method-override');
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
+var favicon = require('serve-favicon');
 var socketio = require('socket.io');
 var MongoStore = require('connect-mongo')(session);
 
@@ -57,6 +58,8 @@ module.exports = function() {
 	//app.set('views', './public/views');
 	//Tells the view engine to look for EJS Templates
 	app.set('view engine', 'ejs');
+
+	app.use(favicon('favicon.ico'));
 
 	app.use(flash());
 	app.use(passport.initialize());

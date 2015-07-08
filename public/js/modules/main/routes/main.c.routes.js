@@ -8,8 +8,5 @@ angular.module('main').config(['$routeProvider', function($routeProvider) {
 	}).
 	when('/careers', {
 		templateUrl : 'js/modules/main/views/careers.html'
-	}).
-	when('/password', {
-		templateUrl : 'js/modules/main/views/forgot-password.html'
 	});
 }]);

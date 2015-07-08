@@ -1,5 +1,6 @@
 module.exports = {
 	//Production configuration options
+	mainURL : 'http://koyn.io',
 	sessionSecret : 'productionSessionSecret',
 	db : process.env.MONGOLAB_URI,
 	facebook : {

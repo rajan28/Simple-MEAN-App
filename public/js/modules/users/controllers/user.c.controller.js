@@ -1,4 +1,4 @@
-angular.module('user').controller('UserCtrl', ['$scope', '$location', '$routeParams', 'User', 'Authentication', function($scope, $location, $routeParams, User, Authentication) {
+angular.module('user').controller('UserCtrl', ['$scope', '$location', '$routeParams', '$http', 'User', 'Authentication', function($scope, $location, $routeParams, $http, User, Authentication) {
 	$scope.authentication = Authentication;
 
 	$scope.user = Authentication.user ? Authentication.user : '';

@@ -2,21 +2,19 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var passport = require('passport');
 var crypto = require('crypto');
+var nodemailer = require('nodemailer');
+var sgTransport = require('nodemailer-sendgrid-transport');
+var waterfall = require('async-waterfall');
+var config = require('../../config/config.js');
 
-// var newUser = User({
-//  firstname : "bob",
-//  lastname : "jones",
-//  email : "bob@jones.com",
-//  username : "bobjones",
-//  password : "bobbyjones"
-// });
+var options = {
+    auth : {
+        api_user : 'koyn',
+        api_key : 'krzyzewski1'
+    }
+};
 
-// // save the user
-// newUser.save(function(err) {
-//   if (err) throw err;
-
-//   console.log('User created!');
-// });
+var transporter = nodemailer.createTransport(sgTransport(options));
 
 var getErrorMessage = function(err) {
     var message = '';
@@ -136,6 +134,7 @@ exports.requiresLogin = function(req, res, next) {
 ////my code////
 
 exports.createNewUser = function(req, res, next) {
+
     var user = new User(req.body);
 
     //user.provider = 'posted';
@@ -241,13 +240,101 @@ exports.deleteAll = function(req, res, next) {
     });
 };
 
-// exports.listEmailsOnly = function(req, res, next) {
-//  User.find({}, 'email', function(err, users) {
-//      if (err) {
-//          return next(err);
-//      }
-//      else {
-//          res.json(users);
-//      }
-//  });
-// };
+exports.sendPasswordResetMail = function(req, res, next) {
+    console.log(req.body);
+    waterfall( [
+        function(done) {
+            crypto.randomBytes(20, function(err, buf) {
+                var token = buf.toString('hex');
+                done(err, token);
+            });
+        },
+        function(token, done) {
+            User.findOne({email : req.body.resetpasswordemail}, function(err, user) {
+                if(!user) {
+                    console.log('Error. No account with that email address exists.');
+                    return res.redirect('/#!/password');
+                }
+
+                console.log('hi4');
+                user.resetPasswordToken = token;
+                user.tokenExpiration = Date.now() + 3600000;
+
+
+                user.save(function(err) {
+                    done(err, token, user);
+                });
+                console.log('hi5');
+            });
+        },
+        function(token, user, done) {
+            console.log(user);
+            transporter.sendMail({
+                from: 'no-reply@koyn.io',
+                to: user.email,
+                subject: 'Koyn Password Reset',
+                text: 'You are receiving this because you (or someone else) have requested a password reset for your account.\n\n' +
+                      'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                      config.mainURL + '/passwordreset/' + token + '\n\n' +
+                      'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+            }, function(err) {
+                if (err) return err;
+                console.log('message sent');
+                done(err, 'done');
+            });
+        }
+    ], function(err) {
+        if(err) {
+            return next(err);
+        }
+        res.redirect('/#!/password');
+    });
+};
+
+exports.renderPasswordReset = function(req, res) {
+    User.findOne( {resetPasswordToken: req.params.token, tokenExpiration: {$gt: Date.now()}}, function(err, user) {
+        if (!user) {
+            console.log('Error, Password reset token is invalid or has expired.');
+            return res.redirect('/#!/password');
+        }
+        res.render('passwordreset', {
+            user: req.user
+        });
+    });
+};
+
+exports.resetPassword = function(req, res) {
+    waterfall( [
+        function(done) {
+            User.findOne( {resetPasswordToken: req.params.token, tokenExpiration: {$gt: Date.now()}}, function(err, user) {
+                if (!user) {
+                    console.log('Error, Password reset token is invalid or has expired.');
+                    return res.redirect('back');
+                }
+                
+                user.password = req.body.password;
+                user.resetPasswordToken = undefined;
+                user.tokenExpiration = undefined;
+
+                user.save(function(err) {
+                    req.login(user, function(err) {
+                        done(err, user);
+                    });
+                });
+            });
+        },
+        function(user, done) {
+            transporter.sendMail( {
+                from: 'no-reply@koyn.io',
+                to: user.email,
+                subject: 'Password Successfully Changed!',
+                text: 'Hello,\n\n' +
+                      'This is a confirmation that the password for your account ' + user.username + ' (' + user.email + ')' + ' has just been changed.\n'
+            }, function(err) {
+                    done(err);
+            });
+        }
+    ], function(err) {
+        res.redirect('/');
+    });
+};

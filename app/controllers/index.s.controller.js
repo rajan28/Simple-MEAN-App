@@ -1,5 +1,6 @@
 var nodemailer = require('nodemailer');
 var sgTransport = require('nodemailer-sendgrid-transport');
+var waterfall = require('async-waterfall');
 
 var options = {
 	auth : {
@@ -9,14 +10,6 @@ var options = {
 };
 
 var transporter = nodemailer.createTransport(sgTransport(options));
-
-// var transporter = nodemailer.createTransport({
-//     service: 'Yahoo',
-//     auth: {
-//         user: 'rajan2894@yahoo.com',
-//         pass: 'fl0ating'
-//     }
-// });
 
 exports.render = function(req, res) { //Renders information when called
 
@@ -41,7 +34,7 @@ exports.sendMail = function(req, res) {
 
 	transporter.sendMail({
 	    from: data.email,
-	    to: 'admin@koyn.io',
+	    to: 'contact@koyn.io',
 	    subject: 'Koyn Mail from ' + data.name,
 	    text: data.message
 	}, function(err) {
@@ -55,19 +48,15 @@ exports.sendMail = function(req, res) {
 
 exports.sendUserWelcomeMail = function(req, res) {
 
-};
-
-exports.sendPasswordResetMail = function(req, res) {
-
 	var data = req.body;
 
 	console.log(data);
 
 	transporter.sendMail({
-	    from: 'rajan2894@yahoo.com',
+	    from: 'no-reply@koyn.io',
 	    to: data.email,
-	    subject: 'Koyn Password Reset',
-	    text: 'You lost your password. For shame. You will never get another. Warm Regards, The Koyn Team'
+	    subject: 'Welcome to Koyn',
+	    text: 'Hi, welcome to Koyn. Sincerely, The Koyn Team'
 	}, function(err) {
 		if (err) {
 			console.log(err);
@@ -75,4 +64,5 @@ exports.sendPasswordResetMail = function(req, res) {
 	});
 
 	res.json(data);
+
 };

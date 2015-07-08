@@ -41,24 +41,6 @@ angular.module('main').controller('MainCtrl', ['$scope', '$rootScope', '$http', 
 		$scope.message = '';
 	};
 
-	$scope.passwordReset = function() {
-		var data = {
-			email : this.recovery.email
-		};
-
-		$http.post('/passwordreset', data).
-			success(function(data, status, headers, config) {
-				console.log('success');
-			}).
-			error(function(data, status, headers, config) {
-				console.log('failure');
-			});
-
-		$scope.recovery.email = '';
-		alert('Thank you. If the email address entered corresponds with one of our accounts, . Please allow up t');
-		$location.path('/');
-	};
-
 	$scope.queryHandler = function() {
 		var queryObject = {
 			city : $scope.location,

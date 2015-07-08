@@ -1,5 +1,6 @@
 app/data
 public/scss
+node_modules/async-waterfall
 node_modules/body-parser
 node_modules/compression
 node_modules/connect-flash
@@ -18,5 +19,5 @@ node_modules/nodemailer-sendgrid-transport
 node_modules/passport-facebook
 node_modules/passport-local
 node_modules/passport
-node_modules/request
+node_modules/serve-favicon
 node_modules/socket.io

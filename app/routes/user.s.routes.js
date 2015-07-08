@@ -28,10 +28,17 @@ module.exports = function(app) {
 
     app.get('/signout', user.signout);
 
+    app.route('/passwordreset')
+        .post(user.sendPasswordResetMail);
+        
+    app.route('/passwordreset/:token')
+        .get(user.renderPasswordReset)
+        .post(user.resetPassword);
+
     app.route('/users')
         .get(user.list)
         .post(user.createNewUser)
-        .delete(user.deleteAll);;
+        .delete(user.deleteAll);
 
     app.route('/users/:userId')
         .get(user.read)
