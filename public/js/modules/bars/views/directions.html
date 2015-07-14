@@ -1,24 +1,31 @@
 <section data-ng-controller="BarCtrl" data-ng-init="findOne(); initialize()">
     <br>
     <h2 class="center-this">Directions to {{bar.name}}</h2>
-    <div class="container 25%">
-        <form ng-submit="calcRoute()">
-            <strong>Start:</strong>
-            <input ng-model="start" type="text" id="start" placeholder="Your Location">
-            <strong>End:</strong>
-            <input type="text" id="end" value="{{bar.address}}">
-            <strong>Mode of Transportation:</strong>
-            <select id="mode">
-                <option value="DRIVING">Driving</option>
-                <option value="WALKING">Walking</option>
-                <option value="BICYCLING">Biking</option>
-                <option value="TRANSIT">Public Transportation</option>
-            </select>
-            <input class="button button-spacing center-this" type="submit" value="submit">
-        </form>
+
+    <div class="container">
+        <div class="row">
+            <section class="3u 12u$(small)">
+                <form ng-submit="calcRoute()">
+                    <strong>Start:</strong>
+                    <input ng-model="start" type="text" id="start" placeholder="Your Location">
+                    <strong>End:</strong>
+                    <input type="text" id="end" value="{{bar.address}}">
+                    <strong>Mode of Transportation:</strong>
+                    <select id="mode">
+                        <option value="DRIVING">Driving</option>
+                        <option value="WALKING">Walking</option>
+                        <option value="BICYCLING">Biking</option>
+                        <option value="TRANSIT">Public Transportation</option>
+                    </select>
+                    <input class="button button-spacing center-this" type="submit" value="submit">
+                </form>
+            </section>
+            <section class="9u$ 12u$(small)">
+                <div id="map-canvas"></div>
+            </section>
+        </div>
     </div>
 
-    <div id="map-canvas"></div>
     <div id="directions-panel"></div>
 
 </section>

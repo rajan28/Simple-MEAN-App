@@ -4,6 +4,10 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
     $scope.featuredName = 'Bob';
     $scope.featuredRating = 3;
 
+
+    window.barPics = ["images/yeoman.png"];
+    $scope.pic1 = window.barPics[0];
+
     //Carousel
 
     $(document).ready(function() {
@@ -224,20 +228,31 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
                 $scope.groupSize = window.queryObject ? window.queryObject.groupSize : '';
                 var groupArray = $firebaseArray(groupRef);
                 groupArray.$loaded().then(function(data) {
-                    for (i=0; i < data.length; i++) {
-                        if (window.sender == data[i].sender) {
-                            $scope.group = data[i].group;
-                            $scope.groupSize = data[i].groupSize;
-                            $scope.sender = data[i].sender;
-                            break;
-                        }; 
-                        if (i == data.length-1) {
-                            groupRef.push( {
-                                group : $scope.group,
-                                groupSize : $scope.groupSize,
-                                sender : window.sender
-                            });
-                            $scope.sender = window.sender
+                    if(data.length === 0) {
+                        groupRef.push( {
+                            group : $scope.group,
+                            groupSize : $scope.groupSize,
+                            sender : window.sender
+                        });
+                        $scope.sender = window.sender
+                        console.log('hi');
+                    }
+                    else {
+                        for (i=0; i < data.length; i++) {
+                            if (window.sender == data[i].sender) {
+                                $scope.group = data[i].group;
+                                $scope.groupSize = data[i].groupSize;
+                                $scope.sender = data[i].sender;
+                                break;
+                            }; 
+                            if (i == data.length-1) {
+                                groupRef.push( {
+                                    group : $scope.group,
+                                    groupSize : $scope.groupSize,
+                                    sender : window.sender
+                                });
+                                $scope.sender = window.sender
+                            };
                         };
                     };
                 });         

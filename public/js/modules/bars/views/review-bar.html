@@ -1,19 +1,57 @@
 <section data-ng-controller="BarCtrl" data-ng-init="findOne()">
-    <br>
+
+        <section class="test">
+
+            <div class="form-wrapper">
+
+                <div class="form-container">
+                    
+                    <form ng-submit="createReview()" id="msform">
+
+                        <fieldset>
+                            <h2 class="fs-title">Write a Review for {{bar.name}}</h2>
+                            <h3 class="fs-subtitle" data-ng-show="error">
+                                <strong data-ng-bind="error"></strong>
+                            </h3>
+                            <div star-rating ng-model="rating" id="rating" max="5"></div>
+                            <div><label>Your rating: {{rating}}</label></div>
+                            <label for="title">Review Title:</label>
+                            <input class="input-spacing" type="text" data-ng-model="title" id="title" placeholder="Title" required>
+                            <label for="content">Review Content:</label>
+                            <textarea data-ng-model="content" id="content" cols="10" rows="5" placeholder="Write Your Review Here"></textarea>
+                            <input type="submit" value="Submit" class="action-button">
+                        </fieldset>
+
+                    </form>
+
+                </div>
+                
+                <ul class="bg-bubbles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+
+            </div>
+
+        </section>
     <div class="container 25% center-this">
         <h2>Rate/Review Your Experience!</h2>
         <form data-ng-submit="createReview()" novalidate>
 
-            <div star-rating ng-model="rating" id="rating" max="5"></div> <!-- on-rating-selected="rateFunction(rating)" -->
-            <div><label>Your rating: {{rating}}</label></div>
+            
 
             <br>
 
             <div>
-                <label for="title">Review Title:</label>
-                <div>
-                    <input class="input-spacing" type="text" data-ng-model="title" id="title" placeholder="Title" required>
-                </div>
+
             </div>
 
             <div>
