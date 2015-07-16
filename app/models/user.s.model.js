@@ -82,6 +82,9 @@ var UserSchema = new Schema( {
  //            default: Date.now
  //        }
  //    }],
+ 	avatar : {
+ 		type : String
+ 	},
  	resetPasswordToken : {
  		type : String
  	},

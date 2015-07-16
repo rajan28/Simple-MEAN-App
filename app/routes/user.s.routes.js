@@ -2,6 +2,7 @@ var user = require('../controllers/user.s.controller.js');
 var mongoose = require('mongoose');
 var collection = mongoose.Collection;
 var passport = require('passport');
+var multer = require('multer');
 
 module.exports = function(app) {
     app.route('/register')
@@ -44,6 +45,8 @@ module.exports = function(app) {
         .get(user.read)
         .put(user.updateByID)
         .delete(user.deleteByID);
+
+    app.post('/images',[ multer({ dest: './public/images'}), user.uploadImage]);
 
     //will be executed before any middleware registered...
     //...with the :userId request parameter

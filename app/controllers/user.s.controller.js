@@ -198,6 +198,7 @@ exports.updateByID = function(req, res, next) {
     user.group1 = req.body.group1;
     user.group2 = req.body.group2;
     user.group3 = req.body.group3;
+    user.avatar = req.body.avatar;
     user.salt = req.body.salt;
     user.provider = req.body.provider;
     user.providerId = req.body.providerId;
@@ -239,6 +240,13 @@ exports.deleteAll = function(req, res, next) {
         res.redirect('/');
     });
 };
+
+exports.uploadImage = function(req, res) {
+    console.log(req.body) // form fields
+    console.log(req.files) // form files
+    res.status(204).end()
+};
+
 
 exports.sendPasswordResetMail = function(req, res, next) {
     console.log(req.body);

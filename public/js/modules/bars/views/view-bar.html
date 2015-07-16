@@ -1,13 +1,15 @@
 <section class="location-background" data-ng-controller="BarCtrl" data-ng-init="findOne(); initializeViewBar()">
-    <br>
+    <section class="12u$ notify center-this full">
+        sjdlkfsdjflk
+    </section>
     <div class="container location">
         <div class="row">
             <section class="3u 12u$(small) center-this">
                 <div>
                     <h2 class="header-no-margin" data-ng-bind="bar.name"></h2>
-                    <star-rating ng-model="rating2" max="5" readonly="isReadonly"></star-rating>
-                    <div><strong>{{rating2}}/5 Stars</strong></div>
-                    <div><strong>10 Reviews</strong></div>
+                    <!-- <star-rating ng-model="averageRating" max="5" readonly="isReadonly"></star-rating> -->
+                    <div><strong>{{averageRating}}/5 Stars</strong></div>
+                    <div><strong>{{numReviews}} Reviews</strong></div>
                 </div>
                 <br>
                 <div>
@@ -34,9 +36,6 @@
                 <div class="location-info">
                     <h3>Information</h3>
                     {{bar.information}}
-                </div>
-                <br>
-                <div class="location-hours">
                     <table>
                         <thead>
                             <tr>

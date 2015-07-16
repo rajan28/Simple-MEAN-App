@@ -110,7 +110,14 @@
 					<br>
 					<br>
 					<br>
-					<h2>Profile Picture Feature Not Yet Available. Check Back Later!</h2>
+					<h2>Change Profile Picture (Contains Bugs)</h2>
+					<p>{{error}}</p>
+					<form ng-submit="update()" id="uploadForm" enctype="multipart/form-data" action="/images" method="post">
+						<input type="file" name="userPhoto">
+						<input type="text" placeholder="Name Your Profile Picture" ng-model="user.avatar" id="user.avatar"> 
+						<input type="password" placeholder="Enter Password to Confirm Change" ng-model="password" id="password">
+						<input type="submit" value="Upload Image">
+					</form>
 				</div>
 			</div>
 		</div>

@@ -1,5 +1,6 @@
 angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routeParams', '$location', '$firebaseObject', '$firebaseArray', '$resource', 'FIREBASE_URL', 'Authentication', 'Bar', 'BarReview', 'BarRating', function($scope, $rootScope, $routeParams, $location, $firebaseObject, $firebaseArray, $resource, FIREBASE_URL, Authentication, Bar, BarReview, BarRating) {
-    $scope.authentication = Authentication
+    $scope.authentication = Authentication;
+    $scope.logstatus = Authentication.user ? true : false;
 
     $scope.featuredName = 'Bob';
     $scope.featuredRating = 3;
@@ -42,12 +43,10 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
           mapOptions);
 
       // Try HTML5 geolocation
-      if(navigator.geolocation) {
+    if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
           var pos = new google.maps.LatLng(position.coords.latitude,
                                            position.coords.longitude);
-
-          var locationPos = new google.maps.LatLng(window.bar.latitude, window.bar.longitude);
 
           var contentString = '<p>You are here.<br><a href="' + $scope.directionUrl + '">Get Directions to ' + $scope.bar.name + '</a></p>';
 
@@ -64,6 +63,8 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
           google.maps.event.addListener(marker, 'click', function() {
             infowindow.open(map, marker);
           });
+
+          var locationPos = new google.maps.LatLng(window.bar.latitude, window.bar.longitude);
 
           var locationcontentString = '<h2>' + $scope.bar.name + '</h2>' + '<p>sdfsd</p>';
 
@@ -83,29 +84,48 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
 
           map.setCenter(locationPos);
         }, function() {
-          handleNoGeolocation(true);
+          $scope.handleNoGeolocation(true);
         });
       } else {
         // Browser doesn't support Geolocation
-        handleNoGeolocation(false);
+        $scope.handleNoGeolocation(false);
       }
     };
 
     $scope.handleNoGeolocation = function(errorFlag) {
-      if (errorFlag) {
-        var content = 'Error: The Geolocation service failed.';
-      } else {
-        var content = 'Error: Your browser doesn\'t support geolocation.';
-      }
+        var locationPos = new google.maps.LatLng(window.bar.latitude, window.bar.longitude);
 
-      var options = {
-        map: map,
-        position: new google.maps.LatLng(60, 105),
-        content: content
-      };
+        var locationcontentString = '<h2>' + $scope.bar.name + '</h2>' + '<p>sdfsd</p>';
 
-      var infowindow = new google.maps.InfoWindow(options);
-      map.setCenter(options.position);
+        var locationinfowindow = new google.maps.InfoWindow({
+              content: locationcontentString
+        });
+
+        var locationmarker = new google.maps.Marker({
+            position: locationPos,
+            map: map,
+            title: 'Hello World!'
+        });
+
+        google.maps.event.addListener(locationmarker, 'click', function() {
+            locationinfowindow.open(map, locationmarker);
+        });
+
+        map.setCenter(locationPos);
+      // if (errorFlag) {
+      //   var content = 'Error: The Geolocation service failed.';
+      // } else {
+      //   var content = 'Error: Your browser doesn\'t support geolocation.';
+      // }
+
+      // var options = {
+      //   map: map,
+      //   position: new google.maps.LatLng(50,50),
+      //   content: content
+      // };
+
+      // var infowindow = new google.maps.InfoWindow(options);
+      // map.setCenter(options.position);
     };
 
     var directionsDisplay;
@@ -161,7 +181,7 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
             rating : this.rating,
             title : this.title,
             content : this.content,
-            user : window.user.username,
+            user : window.user ? window.user.username : '',
             barNameAndCity : $scope.bar.name + ' ' + $scope.bar.city
         });
         review.$save(function(res) {
@@ -169,34 +189,10 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
         }, function(errorResponse) {
             $scope.error = errorResponse.data.message;
         });
+        $scope.title = '';
+        $scope.content = '';
+        $location.path('/');
     };
-
-    // $scope.sendRating = function() {
-    //  var rating = new BarRating( {
-    //      rating : $scope.rating1,
-    //      user : window.user.username
-    //  });
-    //  for (i=0; i < 1; i++) {
-    //      for (i=0; i < $scope.ratings.length; i++) {
-    //          if ($scope.ratings[i].user == window.user.username) {
-    //              var ratingToRemove = $resource('api/bars/:barId/ratings/:ratingId', {
-    //                  barId : $location.path().slice(6,30),
-    //                  ratingId : $scope.ratings[i]._id
-    //              });
-    //              $scope.ratings[i].$remove(function (info) {
-    //                  if (info) {
-    //                      console.log('rating deleted');
-    //                  };
-    //              });
-    //          };
-    //      };
-    //      rating.$save(function(res) {
-
-    //      }, function(errorResponse) {
-    //          $scope.error = errorResponse.data.message;
-    //      });
-    //  };
-    // };
 
 
 
@@ -319,7 +315,14 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
         });
         window.bar = $scope.bar;
         $scope.reviews = BarReview.query();
-        // $scope.ratings = BarRating.query();
+        $scope.reviews.$promise.then(function(data) {
+            $scope.numReviews = $scope.reviews.length;
+            $scope.sum = 0;
+            for (i=0; i < $scope.reviews.length; i++) {
+                $scope.sum = $scope.sum + $scope.reviews[i].rating;
+            };
+            $scope.averageRating = $scope.sum / $scope.reviews.length;
+        });
     };
 
     $scope.update = function() {

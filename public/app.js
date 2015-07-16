@@ -6,6 +6,10 @@ myApp.config(['$locationProvider', function($locationProvider) {
     $locationProvider.hashPrefix('!');
 }]);
 
+// myApp.config(['$routeProvider', function($routeProvider) {
+//   $routeProvider.
+// }])
+
 myApp.controller('MyRootController', function($scope, $location, $rootScope, $log) {
       // your controller initialization here ...
       $rootScope.$on("$locationChangeStart", function(event, next, current) { 
@@ -16,15 +20,15 @@ myApp.controller('MyRootController', function($scope, $location, $rootScope, $lo
 if (window.location.hash === '#_=_') {
     window.location.hash = '#!';
 }
-if (window.location.hash === '#!/#one') {
-    window.location.hash = '#!';
-}
-if (window.location.hash === '#!/#two') {
-    window.location.hash = '#!';
-}
-if (window.location.hash === '#!/#three') {
-    window.location.hash = '#!';
-}
+// if (window.location.hash === '#!/#one') {
+//     window.location.hash = '#!';
+// }
+// if (window.location.hash === '#!/#two') {
+//     window.location.hash = '#!';
+// }
+// if (window.location.hash === '#!/#three') {
+//     window.location.hash = '#!';
+// }
 
 angular.element(document).ready(function() {
     angular.bootstrap(document, ['myApp']);

@@ -1057,7 +1057,7 @@
 		color: #ffffff;
 		padding: 14em 0em 14em;
 		text-align: center;
-		height: 100vh;
+		min-height: 100vmin;
 	}
 
 		#banner :last-child {
@@ -1081,7 +1081,7 @@
 
 	.wrapper {
 		padding: 6em 0em 4em;
-		height: 100vh;
+		min-height: 100vmin;
 		/* Style 1 Wrapper */
 		/* Style 2 Wrapper */
 		/* Style 3 Wrapper */
@@ -1354,11 +1354,18 @@
     border-radius: 10px;
     font-size: 1.1em;
     padding-top: 10px;
+    padding-bottom: 10px;
     cursor: default;
     margin-top: 10px;
     margin-bottom: 10px;
     z-index: 2;
     position: relative;
+}
+
+.full {
+	margin-top: 0px;
+	border-radius: 0px;
+	width: 100vw;
 }
 
 .notify-yellow { 
@@ -1772,9 +1779,9 @@ a.tooltip span {
 .test input:focus:-ms-input-placeholder { opacity: 0; }
 
 .form-wrapper {
-  background: #50a3a2;
-  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+  background: rgba(230,210,170,1);
+  background: -webkit-linear-gradient(top left, rgba(230,210,170,1) 0%, #3cadd4 100%);
+  background: linear-gradient(to bottom right, rgba(230,210,170,1) 0%, #3cadd4 100%);
   position: absolute;
   width: 100%;
   height: 100vh;
@@ -1800,6 +1807,9 @@ a.tooltip span {
   -webkit-transition-timing-function: ease-in-put;
           transition-timing-function: ease-in-put;
   font-weight: 200;
+}
+.register {
+	padding: 20px;
 }
 .server-form {
   padding: 20px 0;

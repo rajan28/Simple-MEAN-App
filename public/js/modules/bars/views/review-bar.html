@@ -10,6 +10,7 @@
 
                         <fieldset>
                             <h2 class="fs-title">Write a Review for {{bar.name}}</h2>
+                            <h3 class="fs-subtitle" ng-hide="logstatus">Please sign in to write a review.</h3>
                             <h3 class="fs-subtitle" data-ng-show="error">
                                 <strong data-ng-bind="error"></strong>
                             </h3>
@@ -63,10 +64,6 @@
 
             <div>
                 <input class="button-spacing" type="submit">
-            </div>
-
-            <div data-ng-show="error">
-                <strong data-ng-bind="error"></strong>
             </div>
         </form>
     </div>
