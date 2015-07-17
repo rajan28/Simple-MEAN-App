@@ -62,3 +62,16 @@
 	#banner {
 		padding: 8em 2em 8em;
 	}
+
+/* Forms */
+
+	.fb-btn {
+		width: 100%;
+		text-align: center;
+	}
+
+	.fb-btn span {
+		display: none;
+	}
+
+

@@ -209,10 +209,10 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
         $scope.bar = Bar.get( {
             barId : $routeParams.barId
         }).$promise.then(function(data) {
-            chatRef = new Firebase(FIREBASE_URL + 'chatrooms/' + data.name);
+            chatRef = new Firebase(FIREBASE_URL + 'chatrooms/' + data.city.replace(' ', '-') + '-' + data.name.replace(' ', '-'));
             $scope.bar = data;
-            var groupRef = new Firebase(FIREBASE_URL + 'chatrooms/' + data.name + '/groups');
-            var mainRef = new Firebase(FIREBASE_URL + 'chatrooms/' + data.name + '/main');
+            var groupRef = new Firebase(chatRef + '/groups');
+            var mainRef = new Firebase(chatRef + '/main');
             var chatArray = $firebaseArray(mainRef);
             chatArray.$loaded().then(function(arr) {
                 $scope.chats = arr;
@@ -269,7 +269,7 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
     };
 
     $scope.main = function() {
-        var mainRef = new Firebase(FIREBASE_URL + 'chatrooms/' + $scope.bar.name + '/main');
+        var mainRef = new Firebase(FIREBASE_URL + 'chatrooms/' + $scope.bar.city.replace(' ', '-') + '-' + $scope.bar.name.replace(' ', '-') + '/main');
         mainRef.push( {
             group : $scope.group,
             groupSize : $scope.groupSize,
