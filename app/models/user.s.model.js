@@ -18,12 +18,15 @@ var UserSchema = new Schema( {
 	},
 	birthday : {
 		type : String,
-		required : true,
 		validate : [
 			function isValidDate(birthday) {
+				if(birthday == '') {
+					return true;
+				};
+
 			    if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(birthday)) {
 			        return false;
-			    }
+			    };
 
 			    var parts = birthday.split("/");
 			    var day = parseInt(parts[1], 10);
@@ -43,11 +46,13 @@ var UserSchema = new Schema( {
 			"Month must be in the following format: MM/DD/YYYY"
 		]
 	},
+	age : {
+		type : Number
+	},
 	email : {
 		type : String,
     	unique : true,
 		match : [/.+\@.+\..+/, "Please enter a valid e-mail address"],
-		required : true
 	},
 	username : {
 		type : String,
@@ -111,15 +116,17 @@ UserSchema.virtual('fullname').get(function() {
  	return this.firstname + ' ' + this.lastname;
 });
 
-UserSchema.virtual('age').get(function() {
-    var today = new Date();
-    var birthDate = new Date(this.birthday);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age = age - 1;
-    };
-    return age;
+UserSchema.virtual('virtualAge').get(function() {
+	if (this.birthday) {
+		var today = new Date();
+	    var birthDate = new Date(this.birthday);
+	    var age = today.getFullYear() - birthDate.getFullYear();
+	    var m = today.getMonth() - birthDate.getMonth();
+	    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+	        age = age - 1;
+	    };
+	    return age;
+	};
 });
 
 UserSchema.pre('save', function(next) {

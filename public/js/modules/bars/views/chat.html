@@ -1,18 +1,31 @@
 <section ng-controller="BarCtrl" data-ng-init="createInfo()">
 	<br>
-	<div class="container 50%">
-		<h2 class="center-this header-no-margin">{{bar.name}} Chat</h2>
-		<h4 class="center-this">You are Group {{group}}</h4>
-		<form ng-submit="main()" novalidate>
-			<input type="text" name="message" ng-model="message" placeholder="Write Your Message Here">
-			<div class="submitDiv">
-				<input class="submit" type="submit" value="submit">
-			</div>
-		</form>
-		<div class="chat">
-			<div class="message" ng-repeat="chat in chats | orderBy : '-time'">
-				<p class="messages"><span class="sender">Group {{chat.group}}</span> {{chat.text}}</p>
-			</div>
+	<div class="container">
+		<div class="row">
+			<section class="4u 12u$(small)">
+				<div class="chat">
+					<div class="message" ng-repeat="group in groupList">
+						<p class="messages"><span class="sender">Group {{group.group}}</span></p>
+					</div>
+				</div>
+			</section>
+			<section class="4u 12u$(small)">
+				<h2 class="center-this header-no-margin">{{bar.name}} Chat</h2>
+				<h4 class="center-this">You are Group {{group}}</h4>
+				<form ng-submit="main()" novalidate>
+					<input type="text" name="message" ng-model="message" placeholder="Write Your Message Here">
+					<div class="submitDiv">
+						<input class="submit" type="submit" value="submit">
+					</div>
+				</form>
+			</section>
+			<section class="4u$ 12u$(small)">
+				<div class="chat">
+					<div class="message" ng-repeat="chat in chats | orderBy : '-time'">
+						<p class="messages"><span class="sender">Group {{chat.group}}<span ng-show="group == chat.group"> (You)</span></span> {{chat.text}}</p>
+					</div>
+				</div>
+			</section>
 		</div>
 	</div>
 

@@ -224,6 +224,7 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
                 $scope.groupSize = window.queryObject ? window.queryObject.groupSize : '';
                 var groupArray = $firebaseArray(groupRef);
                 groupArray.$loaded().then(function(data) {
+                    $scope.groupList = data;
                     if(data.length === 0) {
                         groupRef.push( {
                             group : $scope.group,
@@ -231,7 +232,6 @@ angular.module('bar').controller('BarCtrl', ['$scope', '$rootScope', '$routePara
                             sender : window.sender
                         });
                         $scope.sender = window.sender
-                        console.log('hi');
                     }
                     else {
                         for (i=0; i < data.length; i++) {

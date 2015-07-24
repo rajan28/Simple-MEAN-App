@@ -1398,7 +1398,8 @@
 /* CHATROOM */
 
 .chat {
-	height: 300px;
+	margin-top: 20px;
+	height: 80vmin;
 	overflow-y : auto;
 }
 
